@@ -174,23 +174,29 @@ const ComponentShowcase: React.FC = () => {
         <section>
           <h2 className="text-2xl font-semibold text-text-primary mb-6">Toggle (Switch)</h2>
           <div className="space-y-4">
-            <Toggle
-              label="Basic toggle"
-              checked={toggleChecked}
-              onChange={(e) => setToggleChecked(e.target.checked)}
-            />
-            <Toggle
-              label="Disabled toggle"
-              disabled
-              checked={false}
-              onChange={() => {}}
-            />
-            <Toggle
-              label="Error toggle"
-              error
-              checked={false}
-              onChange={() => {}}
-            />
+            <div className="flex items-center gap-3">
+              <Toggle
+                checked={toggleChecked}
+                onChange={(e) => setToggleChecked(e.target.checked)}
+              />
+              <span className="text-sm text-text-primary">Basic toggle</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Toggle
+                disabled
+                checked={false}
+                onChange={() => {}}
+              />
+              <span className="text-sm text-text-primary">Disabled toggle</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Toggle
+                error
+                checked={false}
+                onChange={() => {}}
+              />
+              <span className="text-sm text-text-primary">Error toggle</span>
+            </div>
           </div>
         </section>
 

@@ -165,14 +165,25 @@ Animated checkbox with smooth SVG checkmark animation. The checkmark animates wh
 
 ### Toggle
 
+Animated toggle switch with celestial sparkle effects and smooth transitions. Features a star icon with animated sparkles that enhance when the toggle is active.
+
 ```tsx
 <Toggle
   label="Enable feature"
   checked={boolean}
   onChange={function}
   error={boolean}
+  disabled={boolean}
 />
 ```
+
+**Features:**
+- Beautiful animated sparkle effects with multiple particles
+- Star icon that rotates and transforms when toggled
+- Smooth transitions with radial gradient backgrounds
+- Error state with red border indicator
+- Disabled state with reduced opacity and paused animations
+- Compact size (15px height) with responsive design
 
 ### ThemeSwitch
 
