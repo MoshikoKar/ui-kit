@@ -41,6 +41,16 @@
   /* Border colors */
   --color-border: #374151;
   --color-border-focus: #3b82f6;
+
+  /* Button shadow colors for neumorphic 3D effect */
+  --color-primary-shadow-light: rgba(91, 150, 255, 0.4);
+  --color-primary-shadow-dark: rgba(0, 0, 0, 0.5);
+  --color-secondary-shadow-light: rgba(107, 114, 128, 0.3);
+  --color-secondary-shadow-dark: rgba(0, 0, 0, 0.5);
+  --color-danger-shadow-light: rgba(255, 107, 107, 0.4);
+  --color-danger-shadow-dark: rgba(0, 0, 0, 0.5);
+  --color-ghost-shadow-light: rgba(255, 255, 255, 0.1);
+  --color-ghost-shadow-dark: rgba(0, 0, 0, 0.3);
 }
 
 /* Light mode theme variables */
@@ -82,6 +92,16 @@
   /* Border colors */
   --color-border: #d1d5db;
   --color-border-focus: #3b82f6;
+
+  /* Button shadow colors for neumorphic 3D effect */
+  --color-primary-shadow-light: rgba(255, 255, 255, 0.6);
+  --color-primary-shadow-dark: rgba(30, 64, 175, 0.4);
+  --color-secondary-shadow-light: rgba(255, 255, 255, 0.5);
+  --color-secondary-shadow-dark: rgba(75, 85, 99, 0.4);
+  --color-danger-shadow-light: rgba(255, 255, 255, 0.5);
+  --color-danger-shadow-dark: rgba(153, 27, 27, 0.4);
+  --color-ghost-shadow-light: rgba(255, 255, 255, 0.3);
+  --color-ghost-shadow-dark: rgba(197, 197, 197, 0.4);
 }
 
 /* Base styles */
@@ -496,4 +516,51 @@ body {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* Checkbox Styles */
+.checkbox-container {
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  display: none;
+}
+
+.checkbox-container svg {
+  overflow: visible;
+}
+
+.checkbox-path {
+  fill: none;
+  stroke: var(--color-text-primary);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease, stroke 0.3s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.checkbox-container input:checked ~ svg .checkbox-path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+  stroke: var(--color-primary);
+}
+
+.checkbox-path-error {
+  stroke: var(--color-danger);
+}
+
+.checkbox-container input:checked ~ svg .checkbox-path-error {
+  stroke: var(--color-danger);
+}
+
+.checkbox-container:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkbox-container:has(input:disabled) .checkbox-path {
+  stroke: var(--color-text-disabled);
 }

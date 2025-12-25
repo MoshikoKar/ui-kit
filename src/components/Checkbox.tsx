@@ -18,24 +18,24 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   const checkboxId = React.useId();
 
   return (
-    <div className="flex items-center space-x-2">
-      <input
-        id={checkboxId}
-        type="checkbox"
-        className={cn(
-          'w-4 h-4',
-          'bg-surface border border-border rounded',
-          'text-primary focus:ring-primary focus:ring-2 focus:ring-offset-0',
-          'transition-colors duration-200',
-          'disabled:bg-surface-secondary disabled:text-text-disabled disabled:cursor-not-allowed',
-          error && 'border-danger focus:border-danger focus:ring-danger',
-          className
-        )}
-        disabled={disabled}
-        checked={checked}
-        onChange={onChange}
-        {...props}
-      />
+    <div className={cn('flex items-center space-x-2', className)}>
+      <label className={cn('checkbox-container', disabled && 'opacity-50 cursor-not-allowed', !disabled && 'cursor-pointer')}>
+        <input
+          id={checkboxId}
+          type="checkbox"
+          disabled={disabled}
+          checked={checked}
+          onChange={onChange}
+          {...props}
+        />
+        <svg viewBox="0 0 64 64" height="1em" width="1em">
+          <path
+            d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
+            pathLength="575.0541381835938"
+            className={cn('checkbox-path', error && 'checkbox-path-error')}
+          />
+        </svg>
+      </label>
       {label && (
         <label
           htmlFor={checkboxId}

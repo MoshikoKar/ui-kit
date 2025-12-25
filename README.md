@@ -17,7 +17,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 
 - **Button**: Generic visual button with variants, sizes, and states
 - **Input**: Form input field with error states
-- **Checkbox**: Form checkbox with label support
+- **Checkbox**: Animated SVG checkbox with smooth checkmark animation and label support
 - **Toggle**: Switch/toggle component
 
 ### Semantic Wrappers
@@ -143,14 +143,24 @@ npm run lint
 
 ### Checkbox
 
+Animated checkbox with smooth SVG checkmark animation. The checkmark animates when checked/unchecked using stroke-dasharray transitions.
+
 ```tsx
 <Checkbox
   label="Accept terms"
   checked={boolean}
   onChange={function}
   error={boolean}
+  disabled={boolean}
 />
 ```
+
+**Features:**
+- Smooth animated checkmark using SVG path animation
+- Theme-aware colors (adapts to light/dark mode)
+- Error state support with danger color
+- Disabled state with reduced opacity
+- Size: 2em × 2em (scales with font size)
 
 ### Toggle
 

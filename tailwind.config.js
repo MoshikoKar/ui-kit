@@ -47,6 +47,24 @@ module.exports = {
           DEFAULT: 'var(--color-border)',
           focus: 'var(--color-border-focus)',
         },
+        shadow: {
+          primary: {
+            light: 'var(--color-primary-shadow-light)',
+            dark: 'var(--color-primary-shadow-dark)',
+          },
+          secondary: {
+            light: 'var(--color-secondary-shadow-light)',
+            dark: 'var(--color-secondary-shadow-dark)',
+          },
+          danger: {
+            light: 'var(--color-danger-shadow-light)',
+            dark: 'var(--color-danger-shadow-dark)',
+          },
+          ghost: {
+            light: 'var(--color-ghost-shadow-light)',
+            dark: 'var(--color-ghost-shadow-dark)',
+          },
+        },
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1rem' }],

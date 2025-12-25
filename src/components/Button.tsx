@@ -12,15 +12,15 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-text-primary border border-primary hover:bg-primary-hover focus:bg-primary-active disabled:bg-primary-disabled disabled:text-text-disabled',
-  secondary: 'bg-secondary text-text-primary border border-secondary hover:bg-secondary-hover focus:bg-secondary-active disabled:bg-secondary-disabled disabled:text-text-disabled',
-  danger: 'bg-danger text-text-primary border border-danger hover:bg-danger-hover focus:bg-danger-active disabled:bg-danger-disabled disabled:text-text-disabled',
-  ghost: 'bg-ghost text-text-primary border border-transparent hover:bg-ghost-hover focus:bg-ghost-active disabled:bg-ghost-disabled disabled:text-text-disabled',
+  primary: 'bg-primary text-text-primary border border-primary shadow-[inset_-4px_-4px_8px_var(--color-primary-shadow-dark),inset_4px_4px_8px_var(--color-primary-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-primary-shadow-dark),_inset_-3px_-3px_6px_var(--color-primary-shadow-light)] disabled:shadow-none disabled:bg-primary-disabled disabled:text-text-disabled',
+  secondary: 'bg-secondary text-text-primary border border-secondary shadow-[inset_-4px_-4px_8px_var(--color-secondary-shadow-dark),inset_4px_4px_8px_var(--color-secondary-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-secondary-shadow-dark),_inset_-3px_-3px_6px_var(--color-secondary-shadow-light)] disabled:shadow-none disabled:bg-secondary-disabled disabled:text-text-disabled',
+  danger: 'bg-danger text-text-primary border border-danger shadow-[inset_-4px_-4px_8px_var(--color-danger-shadow-dark),inset_4px_4px_8px_var(--color-danger-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-danger-shadow-dark),_inset_-3px_-3px_6px_var(--color-danger-shadow-light)] disabled:shadow-none disabled:bg-danger-disabled disabled:text-text-disabled',
+  ghost: 'bg-ghost text-text-primary border border-transparent shadow-[inset_-4px_-4px_8px_var(--color-ghost-shadow-dark),inset_4px_4px_8px_var(--color-ghost-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-ghost-shadow-dark),_inset_-3px_-3px_6px_var(--color-ghost-shadow-light)] disabled:shadow-none disabled:bg-ghost-disabled disabled:text-text-disabled',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'px-3 py-1.5 text-xs font-medium rounded-md min-h-[2rem]',
-  md: 'px-4 py-2 text-sm font-medium rounded-md min-h-[2.5rem]',
+  sm: 'px-3 py-1.5 text-xs font-medium rounded-lg min-h-[2rem]',
+  md: 'px-4 py-2 text-sm font-medium rounded-lg min-h-[2.5rem]',
   lg: 'px-6 py-3 text-md font-medium rounded-lg min-h-[3rem]',
 };
 
@@ -37,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       className={cn(
         'inline-flex items-center justify-center',
-        'font-medium transition-colors duration-200',
+        'font-medium transition-all duration-200',
         'focus-visible focus:outline-none',
         'disabled:cursor-not-allowed disabled:opacity-50',
         variantClasses[variant],
