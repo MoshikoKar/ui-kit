@@ -24,7 +24,7 @@ const sizeClasses: Record<ButtonSize, string> = {
   lg: 'px-6 py-2 text-md font-medium rounded-lg h-12',
 };
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',
   size = 'md',
   loading = false,
@@ -32,9 +32,10 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   children,
   ...props
-}) => {
+}, ref) => {
   return (
     <button
+      ref={ref}
       className={cn(
         'inline-flex items-center justify-center',
         'font-medium transition-all duration-200',
@@ -47,12 +48,13 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled || loading}
       {...props}
     >
-      {loading && (
+      <span className={cn('inline-flex items-center', loading ? 'w-4 h-4 mr-2' : 'w-0 h-4')}>
         <svg
-          className="animate-spin -ml-1 mr-2 h-4 w-4"
+          className={cn('animate-spin h-4 w-4', !loading && 'opacity-0')}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <circle
             className="opacity-25"
@@ -68,8 +70,10 @@ export const Button: React.FC<ButtonProps> = ({
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           />
         </svg>
-      )}
+      </span>
       {children}
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';

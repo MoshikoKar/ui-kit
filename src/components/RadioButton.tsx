@@ -107,7 +107,7 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
   };
 
   const labelElement = (
-    <label htmlFor={id} className={cn(disabled && 'cursor-not-allowed', className)}>
+    <label htmlFor={id} className={cn(disabled && 'cursor-not-allowed', className)} role="radio" aria-checked={checked} aria-disabled={disabled}>
       <input
         id={id}
         type="radio"
@@ -116,9 +116,12 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
         checked={checked}
         disabled={disabled}
         onChange={handleChange}
+        role="radio"
+        aria-checked={checked}
+        aria-disabled={disabled}
         {...props}
       />
-      {label && <span>{label}</span>}
+      <span>{label || ''}</span>
     </label>
   );
 

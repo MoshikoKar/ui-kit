@@ -6,7 +6,7 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
   error?: boolean;
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
   label,
   error = false,
   className,
@@ -14,18 +14,22 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   ...props
-}) => {
+}, ref) => {
   const checkboxId = React.useId();
 
   return (
     <div className={cn('flex items-center space-x-2', className)}>
       <label className={cn('checkbox-container', disabled && 'opacity-50 cursor-not-allowed', !disabled && 'cursor-pointer')}>
         <input
+          ref={ref}
           id={checkboxId}
           type="checkbox"
           disabled={disabled}
           checked={checked}
           onChange={onChange}
+          aria-checked={checked}
+          aria-invalid={error}
+          aria-disabled={disabled}
           {...props}
         />
         <svg viewBox="0 0 64 64" height="1em" width="1em">
@@ -49,4 +53,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       )}
     </div>
   );
-};
+});
+
+Checkbox.displayName = 'Checkbox';

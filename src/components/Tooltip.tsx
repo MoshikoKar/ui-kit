@@ -79,10 +79,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
   };
 
   const child = React.Children.only(children);
+  const tooltipId = React.useId();
 
   return (
     <span className={cn('relative inline-block', className)}>
       {React.cloneElement(child, {
+        'aria-describedby': open && !disabled ? tooltipId : undefined,
         onMouseEnter: (e: React.MouseEvent) => {
           child.props.onMouseEnter?.(e);
           requestOpen();
@@ -103,6 +105,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
       {open && !disabled && (
         <span
+          id={tooltipId}
           role="tooltip"
           className={cn(
             'absolute z-50 pointer-events-none',

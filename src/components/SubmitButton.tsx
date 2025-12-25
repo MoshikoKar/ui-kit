@@ -1,6 +1,7 @@
 import React, { useState, useId, useRef } from 'react';
 import { cn } from '../utils/cn';
 import { ButtonSize } from './Button';
+import styles from './SubmitButton.module.css';
 
 export interface SubmitButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   successText?: string;
@@ -18,6 +19,12 @@ const splitText = (text: string) => {
       </span>
     );
   });
+};
+
+const sizeClassMap: Record<ButtonSize, string> = {
+  sm: styles['button--size-sm'],
+  md: styles['button--size-md'],
+  lg: styles['button--size-lg'],
 };
 
 export const SubmitButton: React.FC<SubmitButtonProps> = ({
@@ -47,6 +54,7 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
         }, 3000);
       } catch (error) {
         console.error('Submit failed:', error);
+        // Error state handled - no visual changes per requirements
       }
     }
     // Call the original onClick if provided
@@ -60,12 +68,13 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
       type="submit"
       disabled={disabled}
       onClick={handleClick}
-      className={cn('button', `button--size-${size}`, className)}
-      aria-label={success ? 'Submission successful' : undefined}
+      className={cn(styles.button, sizeClassMap[size], className)}
+      aria-label={success ? 'Submission successful' : (props['aria-label'] || 'Submit')}
+      aria-disabled={disabled}
     >
-      <div className="outline"></div>
-      <div className="state state--default">
-        <div className="icon">
+      <div className={styles.outline}></div>
+      <div className={cn(styles.state, styles['state--default'])}>
+        <div className={styles.icon}>
           <svg
             width="1em"
             height="1em"
@@ -97,8 +106,8 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
         </div>
         <p>{splitText(typeof children === 'string' ? children : 'Send Message')}</p>
       </div>
-      <div className="state state--sent">
-        <div className="icon">
+      <div className={cn(styles.state, styles['state--sent'])}>
+        <div className={styles.icon}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

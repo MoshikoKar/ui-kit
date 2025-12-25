@@ -51,6 +51,28 @@
   --color-danger-shadow-dark: rgba(0, 0, 0, 0.5);
   --color-ghost-shadow-light: rgba(255, 255, 255, 0.1);
   --color-ghost-shadow-dark: rgba(0, 0, 0, 0.3);
+
+  /* SubmitButton-specific colors - matching original hardcoded values */
+  --submit-primary: #ff5569;
+  --submit-neutral-1: #f7f8f7;
+  --submit-neutral-2: #e7e7e7;
+
+  /* Loader-specific colors - matching original hardcoded values */
+  --loader-gold: gold;
+  --loader-black: #000;
+
+  /* RadioButton-specific colors - matching original hardcoded values */
+  --radio-bg: #f6f6f6;
+  --radio-border: #8e8f8f;
+  --radio-hover-border: #3c7fb1;
+  --radio-hover-bg-light: #def9fa;
+  --radio-hover-bg-medium: #79c6f9;
+  --radio-hover-bg-dark: #c6e9fc;
+  --radio-hover-shadow: #b1dffd;
+  --radio-checked-bg: #7cd3eb;
+  --radio-checked-border: #27506d;
+  --radio-checked-shadow-1: #16638f;
+  --radio-checked-shadow-2: #1985c0;
 }
 
 /* Light mode theme variables */
@@ -102,6 +124,28 @@
   --color-danger-shadow-dark: rgba(153, 27, 27, 0.4);
   --color-ghost-shadow-light: rgba(255, 255, 255, 0.3);
   --color-ghost-shadow-dark: rgba(197, 197, 197, 0.4);
+
+  /* SubmitButton-specific colors - matching original hardcoded values */
+  --submit-primary: #ff5569;
+  --submit-neutral-1: #f7f8f7;
+  --submit-neutral-2: #e7e7e7;
+
+  /* Loader-specific colors - matching original hardcoded values */
+  --loader-gold: gold;
+  --loader-black: #000;
+
+  /* RadioButton-specific colors - matching original hardcoded values */
+  --radio-bg: #f6f6f6;
+  --radio-border: #8e8f8f;
+  --radio-hover-border: #3c7fb1;
+  --radio-hover-bg-light: #def9fa;
+  --radio-hover-bg-medium: #79c6f9;
+  --radio-hover-bg-dark: #c6e9fc;
+  --radio-hover-shadow: #b1dffd;
+  --radio-checked-bg: #7cd3eb;
+  --radio-checked-border: #27506d;
+  --radio-checked-shadow-1: #16638f;
+  --radio-checked-shadow-2: #1985c0;
 }
 
 /* Base styles */
@@ -127,396 +171,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Submit Button Styles */
-.button {
-  --primary: #ff5569;
-  --neutral-1: #f7f8f7;
-  --neutral-2: #e7e7e7;
-  --radius: 14px;
-
-  cursor: pointer;
-  color: #000;
-  border-radius: var(--radius);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  border: none;
-  box-shadow: 0 0.5px 0.5px 1px rgba(255, 255, 255, 0.2),
-    0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 5px 0px rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: all 0.3s ease;
-  font-family: "Galano Grotesque", Poppins, Montserrat, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-}
-
-/* Size variants - matching Button component sizing */
-.button--size-sm {
-  padding: 0 12px;
-  height: 32px;
-  min-height: 32px;
-  font-size: 12px;
-  min-width: 100px;
-}
-
-.button--size-sm .state {
-  padding-left: 20px;
-}
-
-.button--size-md {
-  padding: 0 16px;
-  height: 40px;
-  min-height: 40px;
-  font-size: 14px;
-  min-width: 150px;
-}
-
-.button--size-md .state {
-  padding-left: 29px;
-}
-
-.button--size-lg {
-  padding: 0 24px;
-  height: 48px;
-  min-height: 48px;
-  font-size: 16px;
-  min-width: 200px;
-}
-
-.button--size-lg .state {
-  padding-left: 36px;
-}
-
-/* Disabled state */
-.button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-  color: #6b7280;
-}
-
-.button:disabled .state,
-.button:disabled .state p,
-.button:disabled .state .icon {
-  color: #6b7280;
-}
-
-.button:disabled .state p span {
-  animation: none !important;
-  opacity: 0.5 !important;
-  color: #6b7280;
-}
-
-.button:disabled .state .icon {
-  transform: scale(1.25) !important;
-}
-
-.button:disabled .state .icon svg {
-  animation: none !important;
-}
-
-.button:disabled:hover {
-  transform: none;
-  box-shadow: 0 0.5px 0.5px 1px rgba(255, 255, 255, 0.2),
-    0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 5px 0px rgba(0, 0, 0, 0.05);
-}
-
-.button:disabled:hover::after {
-  transform: none;
-  box-shadow: none;
-}
-
-.button:disabled:hover .outline {
-  opacity: 0 !important;
-}
-
-.button:disabled:hover .outline::before {
-  animation-play-state: paused !important;
-}
-
-.button:disabled:hover p span {
-  animation: none !important;
-}
-
-.button:disabled:hover .state--default .icon {
-  transform: scale(1.25) !important;
-}
-
-.button:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 1px 2px rgba(255, 255, 255, 0.3),
-    0 15px 30px rgba(0, 0, 0, 0.3), 0 10px 3px -3px rgba(0, 0, 0, 0.04);
-}
-.button:active {
-  transform: scale(1);
-  box-shadow: 0 0 1px 2px rgba(255, 255, 255, 0.3),
-    0 10px 3px -3px rgba(0, 0, 0, 0.2);
-}
-.button:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  border: 2.5px solid transparent;
-  background: linear-gradient(var(--neutral-1), var(--neutral-2)) padding-box,
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.45))
-      border-box;
-  z-index: 0;
-  transition: all 0.4s ease;
-}
-.button:hover::after {
-  transform: scale(1.05, 1.1);
-  box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, 1);
-}
-.button::before {
-  content: "";
-  inset: 7px 6px 6px 6px;
-  position: absolute;
-  background: linear-gradient(to top, var(--neutral-1), var(--neutral-2));
-  border-radius: 30px;
-  filter: blur(0.5px);
-  z-index: 2;
-}
-.state p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.state .icon {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  transform: scale(1.25);
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.state .icon svg {
-  overflow: visible;
-}
-
-/* Outline */
-.outline {
-  position: absolute;
-  border-radius: inherit;
-  overflow: hidden;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  inset: -2px -3.5px;
-}
-.outline::before {
-  content: "";
-  position: absolute;
-  inset: -100%;
-  background: conic-gradient(
-    from 180deg,
-    transparent 60%,
-    white 80%,
-    transparent 100%
-  );
-  animation: spin 2s linear infinite;
-  animation-play-state: paused;
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.button:hover .outline {
-  opacity: 1;
-}
-.button:hover .outline::before {
-  animation-play-state: running;
-}
-
-/* Letters */
-.state p span {
-  display: block;
-  opacity: 0;
-  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
-}
-.button:hover p span {
-  opacity: 1;
-  animation: wave 0.5s ease forwards calc(var(--i) * 0.02s);
-}
-.button:focus p span {
-  opacity: 1;
-  animation: disapear 0.6s ease forwards calc(var(--i) * 0.03s);
-}
-@keyframes wave {
-  30% {
-    opacity: 1;
-    transform: translateY(4px) translateX(0) rotate(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-3px) translateX(0) rotate(0);
-    color: var(--primary);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) translateX(0) rotate(0);
-  }
-}
-@keyframes slideDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) translateX(5px) rotate(-90deg);
-    color: var(--primary);
-    filter: blur(5px);
-  }
-  30% {
-    opacity: 1;
-    transform: translateY(4px) translateX(0) rotate(0);
-    filter: blur(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-3px) translateX(0) rotate(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) translateX(0) rotate(0);
-  }
-}
-@keyframes disapear {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: translateX(5px) translateY(20px);
-    color: var(--primary);
-    filter: blur(5px);
-  }
-}
-
-/* Plane */
-.state--default .icon svg {
-  animation: land 0.6s ease forwards;
-}
-.button:hover .state--default .icon {
-  transform: rotate(45deg) scale(1.25);
-}
-.button:focus .state--default svg {
-  animation: takeOff 0.8s linear forwards;
-}
-.button:focus .state--default .icon {
-  transform: rotate(0) scale(1.25);
-}
-@keyframes takeOff {
-  0% {
-    opacity: 1;
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(70px) rotate(45deg) scale(2);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(160px) rotate(45deg) scale(0);
-  }
-}
-@keyframes land {
-  0% {
-    transform: translateX(-60px) translateY(30px) rotate(-50deg) scale(2);
-    opacity: 0;
-    filter: blur(3px);
-  }
-  100% {
-    transform: translateX(0) translateY(0) rotate(0);
-    opacity: 1;
-    filter: blur(0);
-  }
-}
-
-/* Contrail */
-.state--default .icon:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  height: 2px;
-  width: 0;
-  left: -5px;
-  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5));
-}
-.button:focus .state--default .icon:before {
-  animation: contrail 0.8s linear forwards;
-}
-@keyframes contrail {
-  0% {
-    width: 0;
-    opacity: 1;
-  }
-  8% {
-    width: 15px;
-  }
-  60% {
-    opacity: 0.7;
-    width: 80px;
-  }
-  100% {
-    opacity: 0;
-    width: 160px;
-  }
-}
-
-/* States */
-.state {
-  z-index: 2;
-  display: flex;
-  position: relative;
-}
-.state--sent {
-  display: none;
-}
-.state--sent svg {
-  transform: scale(1.25);
-  margin-right: 8px;
-}
-.button:focus .state--default {
-  position: absolute;
-}
-.button:focus .state--sent {
-  display: flex;
-}
-.button:focus .state--sent span {
-  opacity: 0;
-  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.2s);
-}
-.button:focus .state--sent .icon svg {
-  opacity: 0;
-  animation: appear 1.2s ease forwards 0.8s;
-}
-@keyframes appear {
-  0% {
-    opacity: 0;
-    transform: scale(4) rotate(-40deg);
-    color: var(--primary);
-    filter: blur(4px);
-  }
-  30% {
-    opacity: 1;
-    transform: scale(0.6);
-    filter: blur(1px);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
+/* SubmitButton styles moved to SubmitButton.module.css */
 
 /* Checkbox Styles */
 .checkbox-container {
@@ -770,231 +425,120 @@ body {
 }
 
 /* Toggle Styles */
-.toggle-cont {
-  --primary: #54a8fc;
-  --light: #d9d9d9;
-  --dark: #121212;
-  --gray: #414344;
-
-  position: relative;
-  z-index: 10;
-
-  width: fit-content;
-  height: 15px;
-
-  border-radius: 9999px;
-}
-
-.toggle-cont .toggle-input {
-  display: none;
-}
-
-.toggle-cont .toggle-label {
-  --gap: 1.5px;
-  --width: 15px;
-
-  cursor: pointer;
-
-  position: relative;
-  display: inline-block;
-
-  padding: 0.15rem;
-  width: calc((var(--width) + var(--gap)) * 2);
-  height: 100%;
-  background-color: var(--dark);
-
-  border: 1px solid #777777;
-  border-bottom: 0;
-
-  border-radius: 9999px;
-  box-sizing: content-box;
-  transition: all 0.3s ease-in-out;
-}
-.toggle-label::before {
-  content: "";
-
-  position: absolute;
-  z-index: -10;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: calc(100% + 0.45rem);
-  height: calc(100% + 0.45rem);
-  background-color: var(--gray);
-
-  border: 1px solid #777777;
-  border-bottom: 0;
-  border-radius: 9999px;
-
-  transition: all 0.3s ease-in-out;
-}
-.toggle-label::after {
-  content: "";
-
-  position: absolute;
-  z-index: -10;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(
-    circle at 50% -100%,
-    rgb(58, 155, 252) 0%,
-    rgba(12, 12, 12, 1) 80%
-  );
-
-  border-radius: 9999px;
-}
-
-.toggle-cont .toggle-label .cont-icon {
-  position: relative;
+.toggle-wrapper {
+  /* Toggle-specific colors - matching original hardcoded values */
+  --toggle-wrapper-bg-start: #d5d5d5;
+  --toggle-wrapper-bg-end: #e8e8e8;
+  --toggle-wrapper-shadow: rgb(255 255 255 / .6);
+  --toggle-container-bg: #e8e8e8;
+  --toggle-container-shadow-light: rgb(255 255 255 / .2);
+  --toggle-container-shadow-dark: rgb(0 0 0 / .4);
+  --toggle-checked-bg: #f3b519;
+  --toggle-button-bg: #e8e8e8;
+  --toggle-button-shadow-1: rgb(0 0 0 / .1);
+  --toggle-button-shadow-2: rgb(0 0 0 / .2);
+  --toggle-button-shadow-3: rgb(255 255 255 / .3);
+  --toggle-button-shadow-4: rgb(0 0 0 / .5);
+  --toggle-circle-gradient-start: #f5f5f5;
+  --toggle-circle-gradient-end: #c4c4c4;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
   position: relative;
-  width: var(--width);
-  height: 15px;
-  background-image: radial-gradient(
-    circle at 50% 0%,
-    #666666 0%,
-    var(--gray) 100%
-  );
-
-  border: 1px solid #aaaaaa;
-  border-bottom: 0;
-  border-radius: 9999px;
-  box-shadow: inset 0 -0.05rem 0.05rem var(--primary),
-    inset 0 0 0.15rem 0.25rem var(--second);
-
-  transition: transform 0.3s ease-in-out;
+  border-radius: .5em;
+  padding: .125em;
+  background-image: linear-gradient(to bottom, var(--toggle-wrapper-bg-start), var(--toggle-wrapper-bg-end));
+  box-shadow: 0 1px 1px var(--toggle-wrapper-shadow);
+  font-size: 0.75em;
 }
 
-.cont-icon {
-  overflow: clip;
-  position: relative;
-}
-
-.cont-icon .sparkle {
+.toggle-checkbox {
+  appearance: none;
   position: absolute;
-  top: 50%;
-  left: 50%;
-
-  display: block;
-
-  width: calc(var(--width) * 0.5px);
-  aspect-ratio: 1;
-  background-color: var(--light);
-
-  border-radius: 50%;
-  transform-origin: 50% 50%;
-  rotate: calc(1deg * var(--deg));
-  transform: translate(-50%, -50%);
-  animation: sparkle calc(100s / var(--duration)) linear
-    calc(0s / var(--duration)) infinite;
+  z-index: 1;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  font: inherit;
+  opacity: 0;
+  cursor: pointer;
 }
 
-@keyframes sparkle {
-  to {
-    width: calc(var(--width) * 0.25px);
-    transform: translate(2000%, -50%);
-  }
-}
-
-.cont-icon .icon {
-  width: 0.33rem;
-  fill: var(--light);
-}
-
-.toggle-cont:has(.toggle-input:checked) {
-  --checked: true;
-}
-
-@container style(--checked: true) {
-  .toggle-cont .toggle-label {
-    background-color: #41434400;
-
-    border: 1px solid #3d6970;
-    border-bottom: 0;
-  }
-
-  .toggle-cont .toggle-label::before {
-    box-shadow: 0 0.3rem 0.75rem -0.6rem #0080ff;
-  }
-
-  .toggle-cont .toggle-label .cont-icon {
-    overflow: visible;
-
-    background-image: radial-gradient(
-      circle at 50% 0%,
-      #045ab1 0%,
-      var(--primary) 100%
-    );
-
-    border: 1px solid var(--primary);
-    border-bottom: 0;
-
-    transform: translateX(calc((var(--gap) * 2) + 100%)) rotate(-225deg);
-  }
-
-  .toggle-cont .toggle-label .cont-icon .sparkle {
-    z-index: -10;
-
-    width: calc(var(--width) * 0.75px);
-    background-color: #acacac;
-
-    animation: sparkle calc(100s / var(--duration)) linear
-      calc(10s / var(--duration)) infinite;
-  }
-
-  @keyframes sparkle {
-    to {
-      width: calc(var(--width) * 0.5px);
-      transform: translate(5000%, -50%);
-    }
-  }
-}
-
-/* Toggle Disabled State */
-.toggle-cont:has(.toggle-input:disabled) .toggle-label {
+.toggle-checkbox:disabled {
   cursor: not-allowed;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: .375em;
+  width: 3em;
+  height: 1.5em;
+  background-color: var(--toggle-container-bg);
+  box-shadow: inset 0 0 .0625em .125em var(--toggle-container-shadow-light), inset 0 .0625em .125em var(--toggle-container-shadow-dark);
+  transition: background-color .4s linear;
+}
+
+.toggle-checkbox:checked + .toggle-container {
+  background-color: var(--toggle-checked-bg);
+}
+
+.toggle-checkbox:disabled + .toggle-container {
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.toggle-cont:has(.toggle-input:disabled) .toggle-label .cont-icon {
-  pointer-events: none;
+.toggle-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: .0625em;
+  border-radius: .3125em;
+  width: 1.375em;
+  height: 1.375em;
+  background-color: var(--toggle-button-bg);
+  box-shadow: inset 0 -.0625em .0625em .125em var(--toggle-button-shadow-1), inset 0 -.125em .0625em var(--toggle-button-shadow-2), inset 0 .1875em .0625em var(--toggle-button-shadow-3), 0 .125em .125em var(--toggle-button-shadow-4);
+  transition: left .4s;
+  will-change: left;
 }
 
-.toggle-cont:has(.toggle-input:disabled) .toggle-label .cont-icon .sparkle {
-  animation: none;
-  opacity: 0.3;
+.toggle-checkbox:checked + .toggle-container > .toggle-button {
+  left: 1.5625em;
+}
+
+.toggle-button-circles-container {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  gap: .125em;
+  position: absolute;
+  margin: 0 auto;
+}
+
+.toggle-button-circle {
+  border-radius: 50%;
+  width: .125em;
+  height: .125em;
+  background-image: radial-gradient(circle at 50% 0, var(--toggle-circle-gradient-start), var(--toggle-circle-gradient-end));
 }
 
 /* Toggle Error State */
-.toggle-cont.error .toggle-label {
-  border: 1px solid #ef4444;
-  border-bottom: 1px solid #ef4444;
+.toggle-wrapper--error .toggle-wrapper {
+  border: 1px solid var(--color-danger);
 }
 
-.toggle-cont.error .toggle-label::before {
-  border: 1px solid #ef4444;
-  border-bottom: 1px solid #ef4444;
-  box-shadow: 0 0 0.5rem -0.2rem rgba(239, 68, 68, 0.5);
+.toggle-wrapper--error .toggle-container {
+  border: 1px solid var(--color-danger);
 }
 
-.toggle-cont.error:has(.toggle-input:checked) .toggle-label {
-  border: 1px solid #ef4444;
-  border-bottom: 1px solid #ef4444;
-}
-
-.toggle-cont.error:has(.toggle-input:checked) .toggle-label::before {
-  border: 1px solid #ef4444;
-  border-bottom: 1px solid #ef4444;
-  box-shadow: 0 0.3rem 0.75rem -0.6rem rgba(239, 68, 68, 0.8);
+/* Reduced motion support for Toggle */
+@media (prefers-reduced-motion: reduce) {
+  .toggle-container,
+  .toggle-button {
+    transition: none !important;
+  }
 }
 
 /* Loader Styles */
@@ -1013,12 +557,13 @@ body {
   border-radius: 50%;
   border-style: solid;
   animation: animate023845 3s linear infinite;
+  will-change: transform;
 }
 
 .loader-face-1 {
   width: 100%;
   height: 100%;
-  color: gold;
+  color: var(--loader-gold);
   border-color: currentColor transparent transparent currentColor;
   border-width: 0.2em 0.2em 0em 0em;
   --deg: -45deg;
@@ -1028,7 +573,7 @@ body {
 .loader-face-2 {
   width: 70%;
   height: 70%;
-  color: #000;
+  color: var(--loader-black);
   border-color: currentColor currentColor transparent transparent;
   border-width: 0.2em 0em 0em 0.2em;
   --deg: -135deg;
@@ -1041,7 +586,7 @@ body {
   height: 0.1em;
   top: 50%;
   left: 50%;
-  background-color: transparent;
+  background: transparent;
   transform: rotate(var(--deg));
   transform-origin: left;
 }
@@ -1053,14 +598,14 @@ body {
   content: '';
   width: 1em;
   height: 1em;
-  background-color: currentColor;
+  background-color: var(--loader-gold);
   border-radius: 50%;
-  box-shadow: 0 0 2em,
-              0 0 4em,
-              0 0 6em,
-              0 0 8em,
-              0 0 10em,
-              0 0 0 0.5em rgba(255, 255, 0, 0.1);
+  box-shadow: 0 0 2em var(--loader-gold),
+              0 0 4em var(--loader-gold),
+              0 0 6em var(--loader-gold),
+              0 0 8em var(--loader-gold),
+              0 0 10em var(--loader-gold),
+              0 0 0 0.5em rgba(255, 215, 0, 0.1);
 }
 
 .loader-face-2 .loader-circle::before {
@@ -1070,7 +615,7 @@ body {
   content: '';
   width: 1em;
   height: 1em;
-  background-color: currentColor;
+  background-color: var(--loader-black);
   border-radius: 50%;
   box-shadow: 0 0 2em rgba(255, 255, 255, 0.8),
               0 0 4em rgba(255, 255, 255, 0.6),
@@ -1083,6 +628,23 @@ body {
 @keyframes animate023845 {
   to {
     transform: rotate(1turn);
+  }
+}
+
+/* Reduced motion support for Loader and Toggle */
+@media (prefers-reduced-motion: reduce) {
+  .loader-face {
+    animation: none !important;
+  }
+  
+  .cont-icon .sparkle {
+    animation: none !important;
+  }
+  
+  .toggle-cont .toggle-label,
+  .toggle-cont .toggle-label::before,
+  .toggle-cont .toggle-label .cont-icon {
+    transition: none !important;
   }
 }
 
@@ -1127,8 +689,8 @@ body {
   display: inline-block;
   width: 14px;
   height: 14px;
-  background: #f6f6f6;
-  border: 1px solid #8e8f8f;
+  background: var(--radio-bg);
+  border: 1px solid var(--radio-border);
   border-radius: 50%;
   box-sizing: border-box;
   box-shadow:
@@ -1140,12 +702,21 @@ body {
 }
 
 .radio-input label:hover::before {
-  border-color: #3c7fb1;
+  border-color: var(--radio-hover-border);
   box-shadow:
-    inset 0 0 0 1.5px #def9fa,
-    inset 1px 1px 0 1.5px #79c6f9,
-    inset -1px -1px 0 1.5px #c6e9fc,
-    inset 3px 3px 6px #b1dffd;
+    inset 0 0 0 1.5px var(--radio-hover-bg-light),
+    inset 1px 1px 0 1.5px var(--radio-hover-bg-medium),
+    inset -1px -1px 0 1.5px var(--radio-hover-bg-dark),
+    inset 3px 3px 6px var(--radio-hover-shadow);
+}
+
+.radio-input label:has(input:checked)::before {
+  border-color: var(--radio-checked-border);
+  box-shadow:
+    inset 0 0 0 1.5px var(--radio-hover-bg-light),
+    inset 1px 1px 0 1.5px var(--radio-hover-bg-medium),
+    inset -1px -1px 0 1.5px var(--radio-hover-bg-dark),
+    inset 3px 3px 6px var(--radio-hover-shadow);
 }
 
 .radio-input input:checked + span::after {
@@ -1156,17 +727,17 @@ body {
   display: block;
   width: 8px;
   height: 8px;
-  background: #7cd3eb;
-  border: 1.5px solid #27506d;
+  background: var(--radio-checked-bg);
+  border: 1.5px solid var(--radio-checked-border);
   border-radius: 50%;
   box-sizing: border-box;
   box-shadow:
-    inset -1px -1px 0 0.5px #16638f,
-    inset -1px -1px 0 1px #1985c0;
+    inset -1px -1px 0 0.5px var(--radio-checked-shadow-1),
+    inset -1px -1px 0 1px var(--radio-checked-shadow-2);
 }
 
 .radio-input input:focus-visible + span {
-  outline: 1px dotted #000;
+  outline: 1px dotted var(--color-text-primary);
 }
 
 .radio-input input:disabled + span {
@@ -1187,4 +758,11 @@ body {
 
 .form-border-animation {
   animation: form-border-spin 4s ease-in-out infinite;
+}
+
+/* Reduced motion support for Form */
+@media (prefers-reduced-motion: reduce) {
+  .form-border-animation {
+    animation: none !important;
+  }
 }

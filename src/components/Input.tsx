@@ -14,15 +14,16 @@ const sizeClasses: Record<InputSize, string> = {
   lg: 'px-6 py-3 text-md rounded-lg min-h-[3rem]',
 };
 
-export const Input: React.FC<InputProps> = ({
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
   size = 'md',
   error = false,
   className,
   disabled,
   ...props
-}) => {
+}, ref) => {
   return (
     <input
+      ref={ref}
       className={cn(
         'w-full',
         'bg-surface border border-border',
@@ -38,4 +39,6 @@ export const Input: React.FC<InputProps> = ({
       {...props}
     />
   );
-};
+});
+
+Input.displayName = 'Input';

@@ -47,7 +47,7 @@ const FormContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: n
       <div
         className="absolute inset-[-50px] z-[-2] form-border-animation"
         style={{
-          background: 'conic-gradient(from 45deg, transparent 75%, #fff, transparent 100%)',
+          background: 'conic-gradient(from 45deg, transparent 75%, var(--color-text-primary), transparent 100%)',
         }}
       />
       {children}
@@ -122,7 +122,7 @@ export const Form: React.FC<FormProps> = ({
             </div>
           )}
           {title && (
-            <div className="w-full text-center text-2xl font-bold py-1.5 text-white flex justify-center items-center">
+            <div className="w-full text-center text-2xl font-bold py-1.5 text-text-primary flex justify-center items-center">
               {title}
             </div>
           )}
@@ -154,8 +154,8 @@ export const FormField: React.FC<FormFieldProps> = ({
       )}
       <Input
         className={cn(
-          'w-full p-2.5 border-none rounded-xl bg-surface text-white text-sm outline-none',
-          'focus:border focus:border-white',
+          'w-full p-2.5 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+          'focus:border focus:border-border-focus',
           className
         )}
         error={error}
@@ -177,7 +177,7 @@ export const FormButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> 
       <button
         className={cn(
           'w-full h-10 border-none rounded-[20px] text-sm font-semibold cursor-pointer',
-          'grid place-content-center gap-2.5 bg-surface-secondary text-white',
+          'grid place-content-center gap-2.5 bg-surface-secondary text-text-primary',
           'transition-all duration-300',
           'shadow-[inset_0px_3px_6px_-4px_rgba(255,255,255,0.6),inset_0px_-3px_6px_-2px_rgba(0,0,0,0.8)]',
           'hover:bg-white/25 hover:shadow-[inset_0px_3px_6px_rgba(255,255,255,0.6),inset_0px_-3px_6px_rgba(0,0,0,0.8),0px_0px_8px_rgba(255,255,255,0.05)]',

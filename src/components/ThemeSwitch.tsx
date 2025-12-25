@@ -18,14 +18,29 @@ export const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
     setTheme(isDark ? 'light' : 'dark');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleToggle();
+    }
+  };
+
   return (
     <div className={cn('flex items-center gap-3', className)}>
-      <label className="theme-switch cursor-pointer">
+      <label 
+        className="theme-switch cursor-pointer"
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="switch"
+        aria-checked={isDark}
+        aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      >
         <input
           type="checkbox"
           className="theme-switch__checkbox"
           checked={isDark}
           onChange={handleToggle}
+          aria-hidden="true"
         />
         <div className="theme-switch__container">
           <div className="theme-switch__clouds"></div>
