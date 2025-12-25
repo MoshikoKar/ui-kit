@@ -45,7 +45,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   return (
     <RadioGroupContext.Provider value={{ name, value: currentValue, disabled, onValueChange: handleValueChange }}>
       <fieldset
-        className={cn('space-y-3', disabled && 'opacity-60', className)}
+        className={cn('radio-input', disabled && 'opacity-60', className)}
         disabled={disabled}
         {...props}
       >
@@ -106,8 +106,8 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
     onChange?.(e);
   };
 
-  return (
-    <div className="flex items-center space-x-2">
+  const labelElement = (
+    <label htmlFor={id} className={cn(disabled && 'cursor-not-allowed', className)}>
       <input
         id={id}
         type="radio"
@@ -116,29 +116,17 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
         checked={checked}
         disabled={disabled}
         onChange={handleChange}
-        className={cn(
-          'w-4 h-4',
-          'bg-surface border border-border rounded-full',
-          'text-primary focus:ring-primary focus:ring-2 focus:ring-offset-0',
-          'transition-colors duration-200',
-          'disabled:bg-surface-secondary disabled:text-text-disabled disabled:cursor-not-allowed',
-          className
-        )}
         {...props}
       />
-      {label && (
-        <label
-          htmlFor={id}
-          className={cn(
-            'text-sm font-medium select-none',
-            disabled ? 'text-text-disabled cursor-not-allowed' : 'text-text-primary cursor-pointer'
-          )}
-        >
-          {label}
-        </label>
-      )}
-    </div>
+      {label && <span>{label}</span>}
+    </label>
   );
+
+  if (!isWithinGroup) {
+    return <div className="radio-input">{labelElement}</div>;
+  }
+
+  return labelElement;
 };
 
 

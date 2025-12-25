@@ -18,6 +18,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - **Button**: Generic visual button with variants, sizes, and states
 - **Input**: Form input field with error states
 - **Checkbox**: Animated SVG checkbox with smooth checkmark animation and label support
+- **RadioButton**: Windows-style radio button with RadioGroup support for form selections
 - **Toggle**: Switch/toggle component
 - **Loader**: Animated loading spinner with rotating faces and glowing effects
 - **ThemeSwitch**: Animated dark/light mode toggle with sun/moon and stars/clouds visual effects
@@ -163,6 +164,51 @@ Animated checkbox with smooth SVG checkmark animation. The checkmark animates wh
 - Error state support with danger color
 - Disabled state with reduced opacity
 - Size: 2em × 2em (scales with font size)
+
+### RadioButton
+
+Windows-style radio button component with RadioGroup support for form selections. Features custom-styled radio buttons with hover effects and smooth transitions.
+
+```tsx
+// Standalone radio button
+<RadioButton
+  label="Option 1"
+  value="option1"
+  checked={boolean}
+  onChange={function}
+  disabled={boolean}
+/>
+
+// Radio group
+<RadioGroup
+  name="options"
+  legend="Choose an option"
+  value={string}
+  onValueChange={function}
+  disabled={boolean}
+>
+  <RadioButton label="Option 1" value="option1" />
+  <RadioButton label="Option 2" value="option2" />
+  <RadioButton label="Option 3" value="option3" />
+</RadioGroup>
+```
+
+**Components:**
+- **RadioButton**: Individual radio button with label support
+- **RadioGroup**: Container for managing multiple radio buttons as a group
+
+**Props:**
+- `RadioButton`: `label?: string`, `value: string`, `checked?: boolean`, `disabled?: boolean`, `onChange?: function`, `onCheckedChange?: function`
+- `RadioGroup`: `name?: string`, `legend?: string`, `value?: string`, `defaultValue?: string`, `disabled?: boolean`, `onValueChange?: function`
+
+**Features:**
+- Windows-style custom radio button appearance with 3D effects
+- Smooth hover transitions with blue accent colors
+- Support for controlled and uncontrolled modes
+- RadioGroup context for managing multiple options
+- Disabled state with grayscale filter
+- Focus-visible outline for accessibility
+- Standalone or grouped usage
 
 ### Toggle
 
