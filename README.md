@@ -19,6 +19,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - **Input**: Form input field with error states
 - **Checkbox**: Animated SVG checkbox with smooth checkmark animation and label support
 - **Toggle**: Switch/toggle component
+- **Loader**: Animated loading spinner with rotating faces and glowing effects
 - **ThemeSwitch**: Animated dark/light mode toggle with sun/moon and stars/clouds visual effects
 
 ### Semantic Wrappers
@@ -211,6 +212,44 @@ function App() {
 - Smooth animations with cubic-bezier easing
 - Size matches medium button height (40px)
 - Fully integrated with ThemeProvider
+
+### Loader
+
+Animated loading spinner with two rotating circular faces featuring glowing effects. Perfect for indicating loading states in your application.
+
+```tsx
+import { Loader, Spinner } from '@ui-kit/ui-kit';
+
+// Standalone spinner
+<Spinner size="sm" | "md" | "lg" />
+
+// Inline loader with label
+<Loader 
+  variant="inline" | "container"
+  size="sm" | "md" | "lg"
+  label="Loading..."
+/>
+
+// Full container loader
+<Loader variant="container" size="lg" label="Loading content" />
+```
+
+**Components:**
+- **Spinner**: Standalone animated spinner without label
+- **Loader**: Full loader component with optional label and container variant
+
+**Props:**
+- `size?: "sm" | "md" | "lg"` - Size of the loader (default: `"md"`)
+- `variant?: "inline" | "container"` - Display variant (default: `"inline"`)
+- `label?: string` - Optional loading text label
+
+**Features:**
+- Beautiful rotating faces animation with two circular arcs
+- Gold and black arcs with white glow effects
+- Smooth 3-second rotation animation
+- Three size variants (sm, md, lg)
+- Inline and full container display modes
+- Optional loading text label
 
 ## Architecture Principles
 
