@@ -25,8 +25,13 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM'
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'styles.css';
+          return assetInfo.name || 'asset';
         }
       }
-    }
+    },
+    cssCodeSplit: false
   }
 })
