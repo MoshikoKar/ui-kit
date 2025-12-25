@@ -25,6 +25,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 
 ### Semantic Wrappers
 
+- **Form**: Animated form container with rotating border effect, backdrop blur, and composable form components
 - **SubmitButton**: Button wrapper for form submissions with loading/success states
 
 ## Installation
@@ -296,6 +297,67 @@ import { Loader, Spinner } from '@ui-kit/ui-kit';
 - Three size variants (sm, md, lg)
 - Inline and full container display modes
 - Optional loading text label
+
+### Form
+
+Animated form container component with beautiful rotating border effect, backdrop blur, and composable form elements. Perfect for creating elegant login, signup, contact, and survey forms.
+
+```tsx
+import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@ui-kit/ui-kit';
+
+// Basic login form
+<Form
+  title="Welcome Back"
+  showLogo={boolean}
+  width={number}
+  aspectRatio={number}
+  footer={ReactNode}
+  onSubmit={function}
+>
+  <FormField
+    type="email"
+    placeholder="Email"
+    label="Email"
+    error={boolean}
+  />
+  <FormField
+    type="password"
+    placeholder="Password"
+  />
+  <FormButton type="submit">Sign In</FormButton>
+  <FormButton variant="google" type="button">
+    Sign in with Google
+  </FormButton>
+  <FormFooter>
+    Don't have an account?{' '}
+    <FormFooterLink href="#">Sign up</FormFooterLink>
+  </FormFooter>
+</Form>
+```
+
+**Components:**
+- **Form**: Main form container with animated border and backdrop blur
+- **FormField**: Input field wrapper with optional label and error state
+- **FormButton**: Button component with primary and Google sign-in variants
+- **FormFooter**: Footer container for form links and text
+- **FormFooterLink**: Animated link component for footer content
+
+**Props:**
+- `Form`: `title?: string`, `showLogo?: boolean`, `width?: number`, `aspectRatio?: number`, `footer?: ReactNode`, `className?: string`, plus all standard form HTML attributes
+- `FormField`: `label?: string`, `error?: boolean`, `size?: "sm" | "md" | "lg"`, plus all standard input HTML attributes
+- `FormButton`: `variant?: "primary" | "google"`, plus all standard button HTML attributes
+- `FormFooter`: Standard div HTML attributes
+- `FormFooterLink`: Standard anchor HTML attributes
+
+**Features:**
+- Beautiful animated rotating border effect using conic gradient
+- Backdrop blur effect for modern glassmorphism look
+- Optional user/logo icon with animated design
+- Theme-aware colors using CSS variables
+- Composable structure - works with Checkbox, RadioButton, and other components
+- Animated footer links with hover effects
+- Customizable width and aspect ratio
+- Full TypeScript support
 
 ## Architecture Principles
 

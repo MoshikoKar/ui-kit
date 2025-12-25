@@ -1177,3 +1177,14 @@ body {
 .radio-input input:disabled:not(:checked) + span::before {
   opacity: 0.5;
 }
+
+/* Form component animations */
+@keyframes form-border-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.form-border-animation {
+  animation: form-border-spin 4s ease-in-out infinite;
+}

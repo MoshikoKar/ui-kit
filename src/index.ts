@@ -29,6 +29,9 @@ export type { TooltipProps, TooltipPosition } from './components/Tooltip';
 export { ThemeSwitch } from './components/ThemeSwitch';
 export type { ThemeSwitchProps } from './components/ThemeSwitch';
 
+export { Form, FormField, FormButton, FormFooter, FormFooterLink } from './components/Form';
+export type { FormProps, FormFieldProps, FormFooterLinkProps } from './components/Form';
+
 // Theme
 export { ThemeProvider, useTheme } from './theme/ThemeProvider';
 export type { Theme } from './theme/ThemeProvider';
