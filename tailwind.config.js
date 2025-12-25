@@ -97,5 +97,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addVariant }) {
+      addVariant('theme-light', '.theme-light &');
+    },
+  ],
 }
