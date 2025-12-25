@@ -63,14 +63,49 @@ dist/
 npm install MoshikoKar/ui-kit
 ```
 
-### 2. Import components
+### 2. Next.js Configuration (Required for Next.js projects)
+
+If you're using Next.js, you need to configure it to transpile the package. Add this to your `next.config.js` or `next.config.mjs`:
+
+**For `next.config.js`:**
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ['@ui-kit/ui-kit'],
+};
+
+module.exports = nextConfig;
+```
+
+**For `next.config.mjs`:**
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ['@ui-kit/ui-kit'],
+};
+
+export default nextConfig;
+```
+
+**For TypeScript (`next.config.ts`):**
+```typescript
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  transpilePackages: ['@ui-kit/ui-kit'],
+};
+
+export default nextConfig;
+```
+
+### 3. Import components
 
 ```tsx
 import { Button, Input, ThemeProvider } from '@ui-kit/ui-kit';
 // CSS is automatically imported via the main entry point
 ```
 
-### 3. Use in your app
+### 4. Use in your app
 
 ```tsx
 import { Button, ThemeProvider } from '@ui-kit/ui-kit';
@@ -95,9 +130,17 @@ import '@ui-kit/ui-kit/styles'; // Import CSS separately
 
 ## Troubleshooting
 
-### Issue: "Cannot find module '@ui-kit/ui-kit'"
+### Issue: "Cannot find module '@ui-kit/ui-kit'" (Next.js)
 
-**Solution:** Make sure you've built the package and committed the `dist` folder to GitHub.
+**Solution:** 
+1. Make sure you've added `transpilePackages: ['@ui-kit/ui-kit']` to your `next.config.js`
+2. Restart your Next.js dev server after adding the config
+3. Make sure you've built the package and committed the `dist` folder to GitHub
+4. Try deleting `.next` folder and `node_modules/@ui-kit` then reinstall:
+   ```bash
+   rm -rf .next node_modules/@ui-kit
+   npm install
+   ```
 
 ### Issue: "Module has no exported member"
 
