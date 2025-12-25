@@ -367,6 +367,20 @@ import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@ui-kit
 4. **Theme agnostic**: No OS theme detection, explicit theme control
 5. **Composable**: Components can be combined and extended
 
+## Quality Assurance
+
+A comprehensive professional audit has been conducted on all components. See [`AUDIT_REPORT.md`](./AUDIT_REPORT.md) for detailed findings, including:
+
+- Architecture and design system integrity analysis
+- Component API quality assessment
+- Accessibility (A11y) compliance review
+- Performance and maintainability evaluation
+- Visual consistency and UX rules validation
+- Styling strategy assessment
+- Improvement recommendations prioritized by severity
+
+The audit identifies critical issues, medium-priority improvements, and long-term scalability considerations to help harden the UI Kit into a production-ready design system.
+
 ## License
 
 MIT
