@@ -26,6 +26,9 @@ export type { RadioButtonProps, RadioGroupProps } from './components/RadioButton
 export { Tooltip } from './components/Tooltip';
 export type { TooltipProps, TooltipPosition } from './components/Tooltip';
 
+export { ThemeSwitch } from './components/ThemeSwitch';
+export type { ThemeSwitchProps } from './components/ThemeSwitch';
+
 // Theme
 export { ThemeProvider, useTheme } from './theme/ThemeProvider';
 export type { Theme } from './theme/ThemeProvider';

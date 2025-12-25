@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider, useTheme } from '../theme/ThemeProvider';
+import { ThemeProvider } from '../theme/ThemeProvider';
 import { Button } from '../components/Button';
 import { SubmitButton } from '../components/SubmitButton';
 import { Input } from '../components/Input';
@@ -9,19 +9,12 @@ import { Card, CardContent, CardFooter, CardHeader } from '../components/Card';
 import { Loader, Spinner } from '../components/Loader';
 import { RadioButton, RadioGroup } from '../components/RadioButton';
 import { Tooltip } from '../components/Tooltip';
+import { ThemeSwitch } from '../components/ThemeSwitch';
 
 const ThemeToggle: React.FC = () => {
-  const { theme, setTheme } = useTheme();
-
   return (
     <div className="fixed top-4 right-4 z-50">
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      >
-        {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
-      </Button>
+      <ThemeSwitch />
     </div>
   );
 };

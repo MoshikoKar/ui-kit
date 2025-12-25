@@ -19,6 +19,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - **Input**: Form input field with error states
 - **Checkbox**: Animated SVG checkbox with smooth checkmark animation and label support
 - **Toggle**: Switch/toggle component
+- **ThemeSwitch**: Animated dark/light mode toggle with sun/moon and stars/clouds visual effects
 
 ### Semantic Wrappers
 
@@ -172,6 +173,33 @@ Animated checkbox with smooth SVG checkmark animation. The checkmark animates wh
   error={boolean}
 />
 ```
+
+### ThemeSwitch
+
+Animated theme toggle component with beautiful sun/moon and stars/clouds visual effects. Automatically integrates with the ThemeProvider to switch between dark and light modes.
+
+```tsx
+import { ThemeSwitch, ThemeProvider } from '@ui-kit/ui-kit';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="dark">
+      <ThemeSwitch showLabel={true} />
+    </ThemeProvider>
+  );
+}
+```
+
+**Props:**
+- `showLabel?: boolean` - Show "Dark"/"Light" text next to the toggle (default: `true`)
+- `className?: string` - Additional CSS classes
+
+**Features:**
+- Beautiful animated sun/moon transition
+- Stars appear in dark mode, clouds in light mode
+- Smooth animations with cubic-bezier easing
+- Size matches medium button height (40px)
+- Fully integrated with ThemeProvider
 
 ## Architecture Principles
 
