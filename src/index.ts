@@ -1,6 +1,3 @@
-// Styles - must be imported by consumers
-import './styles/globals.css';
-
 // Components
 export { Button } from './components/Button';
 export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button';

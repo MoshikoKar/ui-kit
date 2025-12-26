@@ -20,10 +20,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 }) => {
   // Initialize theme from localStorage or system preference or default
   const getInitialTheme = (): Theme => {
-    // Check localStorage first
-    const stored = localStorage.getItem('theme') as Theme | null;
-    if (stored === 'light' || stored === 'dark') {
-      return stored;
+    // SSR-safe: Check localStorage first
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('theme') as Theme | null;
+      if (stored === 'light' || stored === 'dark') {
+        return stored;
+      }
     }
     
     // Check system preference
@@ -41,11 +43,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   // Persist theme to localStorage and apply to document
   const handleSetTheme = React.useCallback((newTheme: Theme) => {
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', newTheme);
+    }
   }, []);
 
   // Apply theme class to document element
   React.useEffect(() => {
+    if (typeof document === 'undefined') return;
     const root = document.documentElement;
     if (theme === 'light') {
       root.classList.add('theme-light');
@@ -63,7 +68,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
       // Only update if no theme is stored in localStorage
-      if (!localStorage.getItem('theme')) {
+      if (typeof window !== 'undefined' && !localStorage.getItem('theme')) {
         setTheme(e.matches ? 'dark' : 'light');
       }
     };

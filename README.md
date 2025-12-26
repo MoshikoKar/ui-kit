@@ -28,6 +28,14 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - **Form**: Animated form container with rotating border effect, backdrop blur, and composable form components
 - **SubmitButton**: Button wrapper for form submissions with loading/success states
 
+## Requirements
+
+- React 18.0.0 or higher
+- React DOM 18.0.0 or higher
+- Node.js 16.0.0 or higher (for development)
+
+**Note:** Tailwind CSS is compiled at build time. Consumers do not need Tailwind installed or configured.
+
 ## Installation
 
 ```bash
@@ -36,8 +44,11 @@ npm install @ui-kit/ui-kit
 
 ## Usage
 
+Import components and styles separately:
+
 ```tsx
 import { Button, Input, ThemeProvider } from '@ui-kit/ui-kit';
+import '@ui-kit/ui-kit/styles'; // Required: Import styles explicitly
 
 function App() {
   return (
@@ -48,6 +59,20 @@ function App() {
   );
 }
 ```
+
+**Important:** You must import the styles explicitly. The CSS is not automatically included when importing components.
+
+## Styling & Global CSS
+
+The UI Kit includes global CSS that affects the document root:
+
+- **CSS Variables**: Theme variables are defined on `:root` and `.theme-light`
+- **Global Resets**: Basic resets for `box-sizing`, `html`, and `body` elements
+- **Theme Classes**: Theme switching applies classes to `document.documentElement`
+
+These global styles are intentional and necessary for the theme system to function. If you need to scope styles or avoid global resets, you can override them in your application CSS.
+
+**SSR Compatibility:** The `ThemeProvider` is SSR-safe and works correctly with Next.js, Remix, and other SSR frameworks. All browser API access is properly guarded.
 
 ## Theme System
 
