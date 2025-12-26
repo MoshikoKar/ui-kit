@@ -766,3 +766,45 @@ body {
     animation: none !important;
   }
 }
+
+/* Card Styles - Dark Mode (default) */
+.card {
+  border-radius: 24px;
+  background: #212121;
+  box-shadow:
+    12px 12px 24px rgb(25, 25, 25),
+    -6px -6px 24px rgb(60, 60, 60),
+    rgb(248, 246, 246) -2px -2px 2px,
+    rgba(0, 0, 0, 0.1) 6px 6px 10px;
+}
+
+.card.vertical {
+  width: 190px;
+  height: 254px;
+}
+
+.card.horizontal {
+  width: 320px;
+  height: 160px;
+}
+
+/* Card Styles - Light Mode */
+.theme-light .card {
+  border-radius: 24px;
+  background: lightgrey;
+  box-shadow:
+    12px 12px 24px rgba(50, 50, 93, 0.25),
+    -6px -6px 24px rgba(0, 0, 0, 0.3),
+    rgb(248, 246, 246) -2px -2px 2px inset,
+    rgba(0, 0, 0, 0.027) 1px 1px 1px;
+}
+
+.theme-light .card.vertical {
+  width: 190px;
+  height: 254px;
+}
+
+.theme-light .card.horizontal {
+  width: 320px;
+  height: 160px;
+}

@@ -9,6 +9,7 @@ export const Card: React.FC<CardProps> = ({ className, ...props }) => {
   return (
     <div
       className={cn(
+        'card',
         'w-full',
         'rounded-lg border border-border',
         'bg-surface-secondary text-text-primary',
