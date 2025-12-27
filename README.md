@@ -9,30 +9,35 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - 🎯 **Accessible**: Built with accessibility best practices
 - 📦 **Packaged**: Ready for npm distribution
 - 🧩 **Composable**: Primitive components with semantic wrappers
-- ⚡ **Lightweight**: No external dependencies except React
+- ⚡ **Lightweight**: Minimal dependencies (only clsx and tailwind-merge)
+- 🎭 **Dynamic Sizing**: Components adapt to content with minimum size constraints
 
 ## Components
 
 ### Primitive Components
 
 - **Button**: Generic visual button with variants, sizes, and states
-- **Input**: Form input field with error states
+- **Input**: Form input field with error states and dynamic sizing
 - **Checkbox**: Animated SVG checkbox with smooth checkmark animation and label support
 - **RadioButton**: Windows-style radio button with RadioGroup support for form selections
-- **Toggle**: Switch/toggle component
+- **Toggle**: Switch/toggle component with celestial sparkle effects
 - **Loader**: Animated loading spinner with rotating faces and glowing effects
 - **ThemeSwitch**: Animated dark/light mode toggle with sun/moon and stars/clouds visual effects
-- **SearchBar**: Gradient search bar input with integrated search icon
+- **SearchBar**: Gradient search bar input with integrated search icon and dynamic placeholder sizing
+- **Card**: Flexible card container with header, content, and footer sections
+- **Tooltip**: Accessible tooltip component with position control and delay support
+- **SocialLinks**: Social media links component with platform icons and tooltips
+- **ContextMenu**: Context menu component with grouped items, icons, and variants
 
 ### Semantic Wrappers
 
-- **Form**: Animated form container with rotating border effect, backdrop blur, and composable form components
+- **Form**: Form container with backdrop blur and composable form components (dynamically sized)
 - **SubmitButton**: Button wrapper for form submissions with loading/success states
 
 ## Requirements
 
-- React 18.0.0 or higher
-- React DOM 18.0.0 or higher
+- React 19.2.3 or higher
+- React DOM 19.2.3 or higher
 - Node.js 16.0.0 or higher (for development)
 
 **Note:** Tailwind CSS is compiled at build time. Consumers do not need Tailwind installed or configured.
@@ -105,6 +110,12 @@ Start the preview environment to see all components:
 npm run dev
 ```
 
+The preview includes:
+- **Component Showcase**: Full demonstration of all component variants and states
+- **Landing Page**: Beautiful landing page preview showcasing all components in a cohesive design
+
+Toggle between the showcase and landing page using the button in the bottom-right corner.
+
 ### Build
 
 Build the library for distribution:
@@ -145,6 +156,7 @@ npm run lint
 
 ```tsx
 <SubmitButton
+  variant="primary" | "secondary" | "danger"
   size="sm" | "md" | "lg"
   disabled={boolean}
   onSubmit={async () => { /* submit logic */ }}
@@ -173,13 +185,22 @@ npm run lint
 
 ### SearchBar
 
+Search bar component with dynamic sizing based on placeholder text. Automatically adjusts width to fit placeholder content while maintaining minimum size constraints.
+
 ```tsx
 <SearchBar
-  placeholder="Search..."
+  size="sm" | "md" | "lg"
+  placeholder="Search for components..."
   value={string}
   onChange={function}
 />
 ```
+
+**Features:**
+- Dynamic width calculation based on placeholder text
+- Minimum width constraints per size (sm: 200px, md: 260px, lg: 320px)
+- Integrated search icon with hover effects
+- Gradient background with neumorphic design
 
 ### Checkbox
 
@@ -334,9 +355,173 @@ import { Loader, Spinner } from '@possibly6400/ui-kit';
 - Inline and full container display modes
 - Optional loading text label
 
+### Card
+
+Flexible card component for displaying content with header, content, and footer sections.
+
+```tsx
+import { Card, CardHeader, CardContent, CardFooter } from '@possibly6400/ui-kit';
+
+<Card>
+  <CardHeader>
+    <h3>Card Title</h3>
+  </CardHeader>
+  <CardContent>
+    <p>Card content goes here</p>
+  </CardContent>
+  <CardFooter>
+    <Button variant="ghost" size="sm">Action</Button>
+  </CardFooter>
+</Card>
+```
+
+**Components:**
+- **Card**: Main card container
+- **CardHeader**: Header section with bottom border
+- **CardContent**: Main content area
+- **CardFooter**: Footer section with top border
+
+**Features:**
+- Theme-aware styling with CSS variables
+- Flexible layout with composable sections
+- Border separators between sections
+- Full TypeScript support
+
+### Tooltip
+
+Accessible tooltip component that displays contextual information on hover or focus.
+
+```tsx
+import { Tooltip } from '@possibly6400/ui-kit';
+
+const [tooltipOpen, setTooltipOpen] = useState(false);
+
+<Tooltip
+  open={tooltipOpen}
+  onOpenChange={setTooltipOpen}
+  content="This is a tooltip"
+  position="top" | "bottom" | "left" | "right"
+  delay={number}
+  disabled={boolean}
+>
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
+**Props:**
+- `open: boolean` - Controlled open state
+- `onOpenChange?: (open: boolean) => void` - Callback when open state changes
+- `content: React.ReactNode` - Tooltip content
+- `position?: "top" | "bottom" | "left" | "right"` - Tooltip position (default: `"top"`)
+- `delay?: number` - Delay before showing tooltip in milliseconds (default: `0`)
+- `disabled?: boolean` - Disable tooltip functionality
+- `children: React.ReactElement` - Child element to attach tooltip to
+
+**Features:**
+- Accessible with ARIA attributes
+- Keyboard support (focus/blur events)
+- Position control (top, bottom, left, right)
+- Configurable delay
+- Arrow indicator pointing to trigger element
+- Theme-aware styling
+
+### SocialLinks
+
+Social media links component with platform-specific icons and tooltips.
+
+```tsx
+import { SocialLinks } from '@possibly6400/ui-kit';
+
+const links = [
+  { platform: 'github', url: 'https://github.com', label: 'GitHub' },
+  { platform: 'linkedin', url: 'https://linkedin.com' },
+  { platform: 'x', url: 'https://x.com' },
+];
+
+<SocialLinks
+  links={links}
+  orientation="vertical" | "horizontal"
+/>
+```
+
+**Props:**
+- `links: SocialLink[]` - Array of social link objects
+- `orientation?: "vertical" | "horizontal"` - Layout orientation (default: `"vertical"`)
+- `className?: string` - Additional CSS classes
+
+**Supported Platforms:**
+- LinkedIn, GitHub, Instagram, YouTube, Facebook, Spotify, Telegram, Pinterest, X (Twitter)
+
+**Features:**
+- Platform-specific SVG icons
+- Hover tooltips with platform names
+- Vertical and horizontal layouts
+- Smooth animations and transitions
+- Accessible with proper ARIA labels
+
+### ContextMenu
+
+Context menu component with grouped items, icons, and variant support.
+
+```tsx
+import { ContextMenu } from '@possibly6400/ui-kit';
+
+<ContextMenu
+  groups={[
+    {
+      id: 'actions',
+      items: [
+        {
+          id: 'edit',
+          label: 'Edit',
+          icon: <EditIcon />,
+          onClick: () => console.log('Edit'),
+        },
+        {
+          id: 'copy',
+          label: 'Copy',
+          icon: <CopyIcon />,
+          onClick: () => console.log('Copy'),
+        },
+      ],
+    },
+    {
+      id: 'danger',
+      items: [
+        {
+          id: 'delete',
+          label: 'Delete',
+          variant: 'danger',
+          icon: <DeleteIcon />,
+          onClick: () => console.log('Delete'),
+        },
+      ],
+    },
+  ]}
+  showSeparators={true}
+/>
+```
+
+**Props:**
+- `groups: ContextMenuGroupData[]` - Array of menu groups
+- `showSeparators?: boolean` - Show separators between groups (default: `true`)
+- `className?: string` - Additional CSS classes
+
+**Item Variants:**
+- `default` - Standard menu item
+- `danger` - Destructive action (red styling)
+- `accent` - Accented item (highlighted)
+
+**Features:**
+- Grouped menu items with separators
+- Icon support for each item
+- Variant styling (default, danger, accent)
+- Disabled state support
+- Theme-aware styling
+
 ### Form
 
-Animated form container component with beautiful rotating border effect, backdrop blur, and composable form elements. Perfect for creating elegant login, signup, contact, and survey forms.
+Form container component with backdrop blur and composable form elements. Dynamically sizes based on content.
 
 ```tsx
 import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@possibly6400/ui-kit';
@@ -372,7 +557,7 @@ import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@possib
 ```
 
 **Components:**
-- **Form**: Main form container with animated border and backdrop blur
+- **Form**: Main form container with backdrop blur
 - **FormField**: Input field wrapper with optional label and error state
 - **FormButton**: Button component with primary and Google sign-in variants
 - **FormFooter**: Footer container for form links and text
@@ -386,13 +571,13 @@ import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@possib
 - `FormFooterLink`: Standard anchor HTML attributes
 
 **Features:**
-- Beautiful animated rotating border effect using conic gradient
 - Backdrop blur effect for modern glassmorphism look
 - Optional user/logo icon with animated design
 - Theme-aware colors using CSS variables
 - Composable structure - works with Checkbox, RadioButton, and other components
 - Animated footer links with hover effects
 - Customizable width and aspect ratio
+- Dynamic sizing based on content
 - Full TypeScript support
 
 ## Architecture Principles
@@ -402,10 +587,11 @@ import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@possib
 3. **No hardcoded colors**: All colors derive from CSS variables
 4. **Theme agnostic**: No OS theme detection, explicit theme control
 5. **Composable**: Components can be combined and extended
+6. **Dynamic sizing**: Components adapt to content while maintaining minimum constraints
 
 ## Quality Assurance
 
-A comprehensive professional audit has been conducted on all components. See [`AUDIT_REPORT.md`](./AUDIT_REPORT.md) for detailed findings, including:
+A comprehensive professional audit has been conducted on all components. See [`docs/AUDIT_REPORT.md`](./docs/AUDIT_REPORT.md) for detailed findings, including:
 
 - Architecture and design system integrity analysis
 - Component API quality assessment
