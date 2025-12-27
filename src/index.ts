@@ -41,6 +41,9 @@ export type { SearchBarProps, SearchBarSize } from './components/SearchBar';
 export { SocialLinks } from './components/SocialLinks';
 export type { SocialLinksProps, SocialLink, SocialPlatform, SocialLinksOrientation } from './components/SocialLinks';
 
+export { ContextMenu, ContextMenuGroup, ContextMenuItem, ContextMenuSeparator } from './components/ContextMenu';
+export type { ContextMenuProps, ContextMenuGroupProps, ContextMenuItemProps, ContextMenuItemData, ContextMenuGroupData, ContextMenuItemVariant } from './components/ContextMenu';
+
 // Theme
 export { ThemeProvider, useTheme } from './theme/ThemeProvider';
 export type { Theme } from './theme/ThemeProvider';

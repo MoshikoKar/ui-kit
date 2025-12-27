@@ -1,0 +1,83 @@
+.card {
+  width: 200px;
+  background-color: var(--color-surface-secondary);
+  background-image: linear-gradient(
+    139deg,
+    var(--color-surface-secondary) 0%,
+    var(--color-surface-secondary) 0%,
+    var(--color-surface-tertiary) 100%
+  );
+  border-radius: 10px;
+  padding: 15px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.separator {
+  border-top: 1.5px solid var(--color-border);
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0px 10px;
+}
+
+.element {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  gap: 10px;
+  transition: all 0.3s ease-out;
+  padding: 4px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.element svg {
+  width: 19px;
+  height: 19px;
+  transition: all 0.3s ease-out;
+}
+
+.element .label {
+  font-weight: 600;
+}
+
+.element:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  transform: translate(1px, -1px);
+}
+
+.element.delete:hover {
+  background-color: var(--color-danger-hover);
+}
+
+.element:active {
+  transform: scale(0.99);
+}
+
+.list:not(:last-child) .element:hover svg {
+  stroke: var(--color-text-primary);
+}
+
+.list:last-child svg,
+.list.accent svg {
+  stroke: var(--color-primary);
+}
+
+.list:last-child .element,
+.list.accent .element {
+  color: var(--color-primary);
+}
+
+.list:last-child .element:hover,
+.list.accent .element:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-text-primary);
+}
+
