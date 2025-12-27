@@ -264,11 +264,11 @@
   }
   60% {
     opacity: 1;
-    transform: translateX(70px) rotate(45deg) scale(2);
+    transform: translateX(40px) rotate(45deg) scale(1.5);
   }
   100% {
     opacity: 0;
-    transform: translateX(160px) rotate(45deg) scale(0);
+    transform: translateX(70px) rotate(45deg) scale(0);
   }
 }
 @keyframes land {
@@ -308,11 +308,11 @@
   }
   60% {
     opacity: 0.7;
-    width: 80px;
+    width: 45px;
   }
   100% {
     opacity: 0;
-    width: 160px;
+    width: 65px;
   }
 }
 
