@@ -6,7 +6,7 @@ export { Button } from './components/Button';
 export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button';
 
 export { SubmitButton } from './components/SubmitButton';
-export type { SubmitButtonProps, SubmitButtonSize } from './components/SubmitButton';
+export type { SubmitButtonProps, SubmitButtonVariant, SubmitButtonSize } from './components/SubmitButton';
 
 export { Input } from './components/Input';
 export type { InputProps, InputSize } from './components/Input';
