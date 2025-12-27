@@ -10,7 +10,7 @@ export interface TooltipProps {
   position?: TooltipPosition;
   delay?: number;
   disabled?: boolean;
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   className?: string;
 }
 
@@ -78,7 +78,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     onOpenChange?.(false);
   };
 
-  const child = React.Children.only(children);
+  const child = React.Children.only(children) as React.ReactElement<any>;
   const tooltipId = React.useId();
 
   return (
