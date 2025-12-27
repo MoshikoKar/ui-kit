@@ -12,16 +12,16 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-black theme-light:text-white border border-primary shadow-[inset_-4px_-4px_8px_var(--color-primary-shadow-dark),inset_4px_4px_8px_var(--color-primary-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-primary-shadow-dark),_inset_-3px_-3px_6px_var(--color-primary-shadow-light)] disabled:shadow-none disabled:bg-primary-disabled disabled:text-text-disabled',
-  secondary: 'bg-secondary text-white border border-secondary shadow-[inset_-4px_-4px_8px_var(--color-secondary-shadow-dark),inset_4px_4px_8px_var(--color-secondary-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-secondary-shadow-dark),_inset_-3px_-3px_6px_var(--color-secondary-shadow-light)] disabled:shadow-none disabled:bg-secondary-disabled disabled:text-text-disabled',
-  danger: 'bg-danger text-black theme-light:text-white border border-danger shadow-[inset_-4px_-4px_8px_var(--color-danger-shadow-dark),inset_4px_4px_8px_var(--color-danger-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-danger-shadow-dark),_inset_-3px_-3px_6px_var(--color-danger-shadow-light)] disabled:shadow-none disabled:bg-danger-disabled disabled:text-text-disabled',
-  ghost: 'bg-ghost text-text-primary border border-transparent shadow-[inset_-4px_-4px_8px_var(--color-ghost-shadow-dark),inset_4px_4px_8px_var(--color-ghost-shadow-light)] active:shadow-[inset_3px_3px_6px_var(--color-ghost-shadow-dark),_inset_-3px_-3px_6px_var(--color-ghost-shadow-light)] disabled:shadow-none disabled:bg-ghost-disabled disabled:text-text-disabled',
+  primary: 'text-[#7e97b8] bg-[#dbeafe] border-[rgba(255,255,255,0.333)] shadow-[-4px_-2px_16px_0px_#ffffff,4px_2px_16px_0px_rgb(59_130_246_/_48%)] hover:text-[#516d91] hover:bg-[#bfdbfe] hover:shadow-[-2px_-1px_8px_0px_#ffffff,2px_1px_8px_0px_rgb(59_130_246_/_48%)]',
+  secondary: 'text-[#6b7280] bg-[#d1fae5] border-[rgba(255,255,255,0.4)] shadow-[-4px_-2px_16px_0px_#ffffff,4px_2px_16px_0px_rgb(34_197_94_/_35%)] hover:text-[#4b5563] hover:bg-[#a7f3d0] hover:shadow-[-2px_-1px_8px_0px_#ffffff,2px_1px_8px_0px_rgb(34_197_94_/_35%)]',
+  danger: 'text-[#ef4444] bg-[#fecaca] border-[rgba(255,255,255,0.5)] shadow-[-4px_-2px_16px_0px_#ffffff,4px_2px_16px_0px_rgb(239_68_68_/_35%)] hover:text-[#dc2626] hover:bg-[#fed7d7] hover:shadow-[-2px_-1px_8px_0px_#ffffff,2px_1px_8px_0px_rgb(239_68_68_/_35%)]',
+  ghost: 'text-[#6b7280] bg-transparent border-[rgba(255,255,255,0.2)] shadow-[-4px_-2px_16px_0px_rgba(255,255,255,0.1),4px_2px_16px_0px_rgba(0,0,0,0.1)] hover:text-[#4b5563] hover:bg-[rgba(255,255,255,0.05)] hover:shadow-[-2px_-1px_8px_0px_rgba(255,255,255,0.1),2px_1px_8px_0px_rgba(0,0,0,0.1)]',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'px-3 py-1 text-xs font-medium rounded-lg h-8',
-  md: 'px-4 py-1.5 text-sm font-medium rounded-lg h-10',
-  lg: 'px-6 py-2 text-md font-medium rounded-lg h-12',
+  sm: 'px-4 py-2 pl-5 text-xs h-8',
+  md: 'px-6 py-4 pl-7 text-[13px] h-10',
+  lg: 'px-8 py-5 pl-9 text-sm h-12',
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
@@ -37,8 +37,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     <button
       ref={ref}
       className={cn(
-        'inline-flex items-center justify-center',
-        'font-medium transition-all duration-200',
+        'flex items-center justify-center gap-2.5',
+        'font-inherit font-medium',
+        'uppercase tracking-[0.4px]',
+        'border-2 border-solid',
+        'rounded-[40px]',
+        'transform translate-x-0 translate-y-0 rotate-0',
+        'transition-all duration-200',
+        'active:shadow-none',
         'focus-visible focus:outline-none',
         'disabled:cursor-not-allowed disabled:opacity-50',
         variantClasses[variant],
@@ -48,9 +54,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
       disabled={disabled || loading}
       {...props}
     >
-      <span className={cn('inline-flex items-center', loading ? 'w-4 h-4 mr-2' : 'w-0 h-4')}>
+      {loading && (
         <svg
-          className={cn('animate-spin h-4 w-4', !loading && 'opacity-0')}
+          className="animate-spin h-6 w-6"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -70,7 +76,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           />
         </svg>
-      </span>
+      )}
       {children}
     </button>
   );

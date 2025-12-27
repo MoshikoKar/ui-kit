@@ -195,11 +195,11 @@ export const FormButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> 
 
   return (
     <Button
+      variant="primary"
       className={cn(
         'w-full h-10 rounded-[20px] text-sm font-semibold mt-1.5',
         className
       )}
-      variant="primary"
       {...props}
     >
       {children}

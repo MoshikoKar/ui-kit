@@ -42,15 +42,6 @@
   --color-border: #374151;
   --color-border-focus: #3b82f6;
 
-  /* Button shadow colors for neumorphic 3D effect */
-  --color-primary-shadow-light: rgba(91, 150, 255, 0.4);
-  --color-primary-shadow-dark: rgba(0, 0, 0, 0.5);
-  --color-secondary-shadow-light: rgba(107, 114, 128, 0.3);
-  --color-secondary-shadow-dark: rgba(0, 0, 0, 0.5);
-  --color-danger-shadow-light: rgba(255, 107, 107, 0.4);
-  --color-danger-shadow-dark: rgba(0, 0, 0, 0.5);
-  --color-ghost-shadow-light: rgba(255, 255, 255, 0.1);
-  --color-ghost-shadow-dark: rgba(0, 0, 0, 0.3);
 
   /* SubmitButton-specific colors - matching original hardcoded values */
   --submit-primary: #ff5569;
@@ -133,15 +124,6 @@
   --color-border: #d1d5db;
   --color-border-focus: #3b82f6;
 
-  /* Button shadow colors for neumorphic 3D effect */
-  --color-primary-shadow-light: rgba(255, 255, 255, 0.6);
-  --color-primary-shadow-dark: rgba(30, 64, 175, 0.4);
-  --color-secondary-shadow-light: rgba(255, 255, 255, 0.5);
-  --color-secondary-shadow-dark: rgba(75, 85, 99, 0.4);
-  --color-danger-shadow-light: rgba(255, 255, 255, 0.5);
-  --color-danger-shadow-dark: rgba(153, 27, 27, 0.4);
-  --color-ghost-shadow-light: rgba(255, 255, 255, 0.3);
-  --color-ghost-shadow-dark: rgba(197, 197, 197, 0.4);
 
   /* SubmitButton-specific colors - matching original hardcoded values */
   --submit-primary: #ff5569;

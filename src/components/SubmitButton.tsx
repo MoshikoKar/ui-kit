@@ -1,12 +1,13 @@
 import React, { useState, useId, useRef } from 'react';
 import { cn } from '../utils/cn';
-import { ButtonSize } from './Button';
 import styles from './SubmitButton.module.css';
+
+export type SubmitButtonSize = 'sm' | 'md' | 'lg';
 
 export interface SubmitButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   successText?: string;
   onSubmit?: () => Promise<void> | void;
-  size?: ButtonSize;
+  size?: SubmitButtonSize;
 }
 
 const splitText = (text: string) => {
@@ -21,7 +22,7 @@ const splitText = (text: string) => {
   });
 };
 
-const sizeClassMap: Record<ButtonSize, string> = {
+const sizeClassMap: Record<SubmitButtonSize, string> = {
   sm: styles['button--size-sm'],
   md: styles['button--size-md'],
   lg: styles['button--size-lg'],
