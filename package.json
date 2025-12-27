@@ -1,6 +1,6 @@
 {
   "name": "@possibly6400/ui-kit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A reusable UI component library built with React and TypeScript",
   "repository": {
     "type": "git",
