@@ -78,11 +78,10 @@ export interface ContextMenuItemProps {
 
 export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
   item,
-  isAccentGroup,
+  isAccentGroup: _isAccentGroup,
 }) => {
   const variant = item.variant || 'default';
   const isDanger = variant === 'danger';
-  const isAccent = variant === 'accent' || (isAccentGroup && variant === 'default');
 
   const handleClick = () => {
     if (!item.disabled && item.onClick) {

@@ -4,9 +4,7 @@ node_modules/
 .pnp.js
 
 # Build outputs
-# Note: dist/ is included for GitHub package distribution
-# Uncomment the line below if you want to ignore dist/ during development
-# dist/
+dist/
 build/
 *.tsbuildinfo
 
