@@ -152,16 +152,18 @@ export const FormField: React.FC<FormFieldProps> = ({
           {label}
         </label>
       )}
-      <Input
-        className={cn(
-          'w-full p-2.5 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
-          'focus:border focus:border-border-focus',
-          className
-        )}
-        error={error}
-        size={size}
-        {...props}
-      />
+      <div className="flex justify-center">
+        <Input
+          className={cn(
+            'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+            'focus:border focus:border-border-focus',
+            className
+          )}
+          error={error}
+          size={size}
+          {...props}
+        />
+      </div>
     </div>
   );
 };

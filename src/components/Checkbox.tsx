@@ -18,8 +18,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
   const checkboxId = React.useId();
 
   return (
-    <div className={cn('flex items-center space-x-2', className)}>
-      <label className={cn('checkbox-container', disabled && 'opacity-50 cursor-not-allowed', !disabled && 'cursor-pointer')}>
+    <div className={cn('flex items-center space-x-2', disabled && 'cursor-not-allowed', error && !disabled && 'cursor-help', className)}>
+      <label className={cn('checkbox-container', disabled && 'opacity-50 cursor-not-allowed', error && !disabled && 'cursor-help', !disabled && !error && 'cursor-pointer')}>
         <input
           ref={ref}
           id={checkboxId}
@@ -45,7 +45,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({
           htmlFor={checkboxId}
           className={cn(
             'text-sm font-medium select-none',
-            disabled ? 'text-text-disabled cursor-not-allowed' : 'text-text-primary cursor-pointer'
+            disabled ? 'text-text-disabled cursor-not-allowed' : error ? 'text-text-primary cursor-help' : 'text-text-primary cursor-pointer'
           )}
         >
           {label}

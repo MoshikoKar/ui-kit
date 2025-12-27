@@ -9,9 +9,9 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 }
 
 const sizeClasses: Record<InputSize, string> = {
-  sm: 'px-3 py-1.5 text-xs rounded-md min-h-[2rem]',
-  md: 'px-4 py-2 text-sm rounded-md min-h-[2.5rem]',
-  lg: 'px-6 py-3 text-md rounded-lg min-h-[3rem]',
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-5 py-[10px] text-base',
+  lg: 'px-6 py-3 text-lg',
 };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
@@ -22,22 +22,44 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
   ...props
 }, ref) => {
   return (
-    <input
-      ref={ref}
-      className={cn(
-        'w-full',
-        'bg-surface border border-border',
-        'text-text-primary placeholder-text-secondary',
-        'transition-colors duration-200',
-        'focus-visible focus:outline-none focus:border-border-focus',
-        'disabled:bg-surface-secondary disabled:text-text-disabled disabled:cursor-not-allowed',
-        error && 'border-danger focus:border-danger',
-        sizeClasses[size],
-        className
+    <div className="relative inline-flex items-center">
+      <input
+        ref={ref}
+        className={cn(
+          'bg-transparent',
+          'border-none',
+          'outline-none',
+          'max-w-[190px]',
+          'rounded-full',
+          'text-text-primary',
+          'transition-colors duration-200',
+          'disabled:text-text-disabled disabled:cursor-not-allowed',
+          error ? 'shadow-[inset_2px_5px_10px_var(--input-shadow-error)] cursor-help' : 'shadow-[inset_2px_5px_10px_var(--input-shadow)]',
+          sizeClasses[size],
+          className
+        )}
+        style={error ? { paddingRight: '2rem' } : undefined}
+        disabled={disabled}
+        aria-invalid={error}
+        {...props}
+      />
+      {error && (
+        <svg
+          className="absolute right-2 w-4 h-4 text-danger pointer-events-none flex-shrink-0"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
       )}
-      disabled={disabled}
-      {...props}
-    />
+    </div>
   );
 });
 

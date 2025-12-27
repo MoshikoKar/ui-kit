@@ -45,7 +45,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   return (
     <RadioGroupContext.Provider value={{ name, value: currentValue, disabled, onValueChange: handleValueChange }}>
       <fieldset
-        className={cn('radio-input', disabled && 'opacity-60', className)}
+        className={cn('radio-input', disabled && 'opacity-60 cursor-not-allowed', className)}
         disabled={disabled}
         {...props}
       >

@@ -3238,6 +3238,7 @@ const Bt = ({
   "div",
   {
     className: _(
+      "card",
       "w-full",
       "rounded-lg border border-border",
       "bg-surface-secondary text-text-primary",
@@ -3475,18 +3476,23 @@ const Bt = ({
   defaultTheme: t
 }) => {
   const n = () => {
-    const l = localStorage.getItem("theme");
-    return l === "light" || l === "dark" ? l : typeof window < "u" && window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light" : t || "dark";
+    if (typeof window < "u") {
+      const l = localStorage.getItem("theme");
+      if (l === "light" || l === "dark")
+        return l;
+    }
+    return typeof window < "u" && window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light" : t || "dark";
   }, [o, i] = er(n), c = z.useCallback((l) => {
-    i(l), localStorage.setItem("theme", l);
+    i(l), typeof window < "u" && localStorage.setItem("theme", l);
   }, []);
   return z.useEffect(() => {
+    if (typeof document > "u") return;
     const l = document.documentElement;
     o === "light" ? (l.classList.add("theme-light"), l.classList.remove("theme-dark")) : (l.classList.add("theme-dark"), l.classList.remove("theme-light"));
   }, [o]), z.useEffect(() => {
     if (typeof window > "u" || !window.matchMedia) return;
     const l = window.matchMedia("(prefers-color-scheme: dark)"), d = (p) => {
-      localStorage.getItem("theme") || i(p.matches ? "dark" : "light");
+      typeof window < "u" && !localStorage.getItem("theme") && i(p.matches ? "dark" : "light");
     };
     if (l.addEventListener)
       return l.addEventListener("change", d), () => l.removeEventListener("change", d);

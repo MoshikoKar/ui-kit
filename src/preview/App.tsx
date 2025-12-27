@@ -11,6 +11,7 @@ import { RadioButton, RadioGroup } from '../components/RadioButton';
 import { Tooltip } from '../components/Tooltip';
 import { ThemeSwitch } from '../components/ThemeSwitch';
 import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '../components/Form';
+import { cn } from '../utils/cn';
 
 const ThemeToggle: React.FC = () => {
   return (
@@ -39,10 +40,10 @@ const ComponentShowcase: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-surface p-8">
+    <div className="min-h-screen bg-surface">
       <ThemeToggle />
 
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div className="w-full space-y-12 px-4">
         <header className="text-center">
           <h1 className="text-4xl font-bold text-text-primary mb-2">UI Kit Preview</h1>
           <p className="text-text-secondary">Reusable component library</p>
@@ -51,7 +52,7 @@ const ComponentShowcase: React.FC = () => {
         {/* Button Section */}
         <section>
           <h2 className="text-2xl font-semibold text-text-primary mb-6">Button Variants</h2>
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
             {(['primary', 'secondary', 'danger', 'ghost'] as const).map(variant => (
               <div key={variant} className="space-y-2">
                 <h3 className="text-lg font-medium text-text-primary capitalize">{variant}</h3>
@@ -105,98 +106,122 @@ const ComponentShowcase: React.FC = () => {
           </div>
         </section>
 
-        {/* Input Section */}
+        {/* Input, Checkbox, and Toggle Section */}
         <section>
-          <h2 className="text-2xl font-semibold text-text-primary mb-6">Input</h2>
-          <div className="max-w-md space-y-4">
-            {(['sm', 'md', 'lg'] as const).map(size => (
-              <div key={size} className="space-y-2">
-                <label className="block text-sm font-medium text-text-primary">
-                  {size.toUpperCase()} Input
-                </label>
-                <Input
-                  size={size}
-                  placeholder={`Enter ${size} text`}
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
+          <h2 className="text-2xl font-semibold text-text-primary mb-6">Form Controls</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Input Section */}
+            <div>
+              <h3 className="text-lg font-medium text-text-primary mb-4">Input</h3>
+              <div className="space-y-4">
+                {(['sm', 'md', 'lg'] as const).map(size => (
+                  <div key={size} className="space-y-2">
+                    <label className="block text-sm font-medium text-text-primary">
+                      {size.toUpperCase()} Input
+                    </label>
+                    <div className="flex justify-center">
+                      <Input
+                        size={size}
+                        placeholder={`Enter ${size} text`}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        className={cn(
+                          'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+                          'focus:border focus:border-border-focus'
+                        )}
+                      />
+                    </div>
+                  </div>
+                ))}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-text-primary">
+                    Error Input
+                  </label>
+                  <div className="flex justify-center">
+                    <Input
+                      error
+                      placeholder="This has an error"
+                      value=""
+                      onChange={() => {}}
+                      className={cn(
+                        'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+                        'focus:border focus:border-border-focus'
+                      )}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-text-primary">
+                    Disabled Input
+                  </label>
+                  <div className="flex justify-center">
+                    <Input
+                      disabled
+                      placeholder="Disabled input"
+                      value="Can't edit this"
+                      onChange={() => {}}
+                      className={cn(
+                        'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+                        'focus:border focus:border-border-focus'
+                      )}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Checkbox Section */}
+            <div>
+              <h3 className="text-lg font-medium text-text-primary mb-4">Checkbox</h3>
+              <div className="space-y-4">
+                <Checkbox
+                  label="Basic checkbox"
+                  checked={checkboxChecked}
+                  onChange={(e) => setCheckboxChecked(e.target.checked)}
+                />
+                <Checkbox
+                  label="Disabled checkbox"
+                  disabled
+                  checked={false}
+                  onChange={() => {}}
+                />
+                <Checkbox
+                  label="Error checkbox"
+                  error
+                  checked={false}
+                  onChange={() => {}}
                 />
               </div>
-            ))}
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-text-primary">
-                Error Input
-              </label>
-              <Input
-                error
-                placeholder="This has an error"
-                value=""
-                onChange={() => {}}
-              />
             </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-text-primary">
-                Disabled Input
-              </label>
-              <Input
-                disabled
-                placeholder="Disabled input"
-                value="Can't edit this"
-                onChange={() => {}}
-              />
-            </div>
-          </div>
-        </section>
 
-        {/* Checkbox Section */}
-        <section>
-          <h2 className="text-2xl font-semibold text-text-primary mb-6">Checkbox</h2>
-          <div className="space-y-4">
-            <Checkbox
-              label="Basic checkbox"
-              checked={checkboxChecked}
-              onChange={(e) => setCheckboxChecked(e.target.checked)}
-            />
-            <Checkbox
-              label="Disabled checkbox"
-              disabled
-              checked={false}
-              onChange={() => {}}
-            />
-            <Checkbox
-              label="Error checkbox"
-              error
-              checked={false}
-              onChange={() => {}}
-            />
-          </div>
-        </section>
-
-        {/* Toggle Section */}
-        <section>
-          <h2 className="text-2xl font-semibold text-text-primary mb-6">Toggle (Switch)</h2>
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Toggle
-                checked={toggleChecked}
-                onChange={(e) => setToggleChecked(e.target.checked)}
-              />
-              <span className="text-sm text-text-primary">Basic toggle</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Toggle
-                disabled
-                checked={false}
-                onChange={() => {}}
-              />
-              <span className="text-sm text-text-primary">Disabled toggle</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Toggle
-                error
-                checked={false}
-                onChange={() => {}}
-              />
-              <span className="text-sm text-text-primary">Error toggle</span>
+            {/* Toggle Section */}
+            <div>
+              <h3 className="text-lg font-medium text-text-primary mb-4">Toggle (Switch)</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Toggle
+                    checked={toggleChecked}
+                    onChange={(e) => setToggleChecked(e.target.checked)}
+                  />
+                  <span className="text-sm text-text-primary">Basic toggle</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Toggle
+                    disabled
+                    checked={false}
+                    onChange={() => {}}
+                  />
+                  <span className="text-sm text-text-primary">Disabled toggle</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Toggle
+                    error
+                    checked={false}
+                    onChange={() => {}}
+                  />
+                  <span className="text-sm text-text-primary">Error toggle</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -204,7 +229,7 @@ const ComponentShowcase: React.FC = () => {
         {/* Cards Section */}
         <section>
           <h2 className="text-2xl font-semibold text-text-primary mb-6">Cards</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             <Card>
               <CardContent>
                 <div className="space-y-2">
@@ -234,7 +259,7 @@ const ComponentShowcase: React.FC = () => {
               </CardFooter>
             </Card>
 
-            <Card className="md:col-span-2">
+            <Card className="lg:col-span-2 xl:col-span-1">
               <CardHeader>
                 <div className="space-y-1">
                   <div className="text-lg font-semibold text-text-primary">Card with Actions</div>
@@ -299,7 +324,7 @@ const ComponentShowcase: React.FC = () => {
         {/* Radio Buttons Section */}
         <section>
           <h2 className="text-2xl font-semibold text-text-primary mb-6">Radio Buttons</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="space-y-4">
               <div className="text-sm font-medium text-text-primary">Single Radio</div>
               <RadioButton label="Standalone radio" value="standalone" defaultChecked />
@@ -320,7 +345,7 @@ const ComponentShowcase: React.FC = () => {
               <div className="text-xs text-text-secondary">Selected: {radioValue}</div>
             </div>
 
-            <div className="space-y-4 md:col-span-2">
+            <div className="space-y-4 md:col-span-2 lg:col-span-3">
               <div className="text-sm font-medium text-text-primary">Disabled Radios</div>
               <div className="flex flex-wrap gap-8">
                 <RadioButton label="Disabled (standalone)" value="disabled-standalone" disabled />
@@ -396,7 +421,7 @@ const ComponentShowcase: React.FC = () => {
               </Tooltip>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
               {(['top', 'right', 'bottom', 'left'] as const).map((pos) => (
                 <Tooltip
                   key={pos}
@@ -422,7 +447,7 @@ const ComponentShowcase: React.FC = () => {
               <h3 className="text-xl font-semibold text-text-primary">Form Patterns</h3>
               
               {/* First row: 3 forms */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
                 {/* Login form with logo */}
                 <Form
                   title="Welcome Back"
@@ -533,7 +558,7 @@ const ComponentShowcase: React.FC = () => {
               </div>
 
               {/* Second row: 3 forms */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
                 {/* Login with remember me checkbox */}
                 <Form
                   title="Login"
@@ -636,7 +661,7 @@ const ComponentShowcase: React.FC = () => {
               </div>
 
               {/* Third row: 3 forms */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
                 {/* Form with error state */}
                 <Form
                   title="Login"

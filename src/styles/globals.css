@@ -73,6 +73,10 @@
   --radio-checked-border: #27506d;
   --radio-checked-shadow-1: #16638f;
   --radio-checked-shadow-2: #1985c0;
+
+  /* Input-specific colors */
+  --input-shadow: rgb(5, 5, 5);
+  --input-shadow-error: rgb(220, 38, 38);
 }
 
 /* Light mode theme variables */
@@ -146,6 +150,10 @@
   --radio-checked-border: #27506d;
   --radio-checked-shadow-1: #16638f;
   --radio-checked-shadow-2: #1985c0;
+
+  /* Input-specific colors */
+  --input-shadow: rgba(0, 0, 0, 0.3);
+  --input-shadow-error: rgba(220, 38, 38, 0.336);
 }
 
 /* Base styles */
@@ -747,6 +755,10 @@ body {
 
 .radio-input input:disabled:not(:checked) + span::before {
   opacity: 0.5;
+}
+
+.radio-input label:has(input:disabled) {
+  cursor: not-allowed !important;
 }
 
 /* Form component animations */

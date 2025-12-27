@@ -31,7 +31,7 @@ export const Toggle: React.FC<ToggleProps> = ({
   };
 
   return (
-    <div className={cn('toggle-wrapper', error && 'toggle-wrapper--error', className)}>
+    <div className={cn('toggle-wrapper', error && 'toggle-wrapper--error', disabled && 'cursor-not-allowed', error && !disabled && 'cursor-help', className)}>
       <input
         id={toggleId}
         className="toggle-checkbox"
@@ -42,10 +42,11 @@ export const Toggle: React.FC<ToggleProps> = ({
         role="switch"
         aria-checked={checked}
         aria-disabled={disabled}
+        aria-invalid={error}
         {...props}
       />
       <div 
-        className="toggle-container"
+        className={cn('toggle-container', disabled && 'cursor-not-allowed', error && !disabled && 'cursor-help')}
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
         role="button"
@@ -64,7 +65,7 @@ export const Toggle: React.FC<ToggleProps> = ({
           htmlFor={toggleId}
           className={cn(
             'text-sm font-medium select-none ml-2',
-            disabled ? 'text-text-disabled cursor-not-allowed' : 'text-text-primary cursor-pointer'
+            disabled ? 'text-text-disabled cursor-not-allowed' : error ? 'text-text-primary cursor-help' : 'text-text-primary cursor-pointer'
           )}
         >
           {label}
