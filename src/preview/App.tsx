@@ -12,6 +12,7 @@ import { Tooltip } from '../components/Tooltip';
 import { ThemeSwitch } from '../components/ThemeSwitch';
 import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '../components/Form';
 import { SearchBar } from '../components/SearchBar';
+import { SocialLinks } from '../components/SocialLinks';
 import { cn } from '../utils/cn';
 
 const ThemeToggle: React.FC = () => {
@@ -460,6 +461,51 @@ const ComponentShowcase: React.FC = () => {
                   </span>
                 </Tooltip>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Social Links Section */}
+        <section>
+          <h2 className="text-2xl font-semibold text-text-primary mb-6">Social Links</h2>
+          <div className="space-y-10">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-text-primary">Vertical Orientation</h3>
+              <div className="flex justify-center">
+                <SocialLinks
+                  orientation="vertical"
+                  links={[
+                    { platform: 'linkedin', url: 'https://linkedin.com/' },
+                    { platform: 'github', url: 'https://www.github.com/' },
+                    { platform: 'instagram', url: 'https://www.instagram.com/' },
+                    { platform: 'youtube', url: 'https://youtube.com/' },
+                    { platform: 'facebook', url: 'https://facebook.com/' },
+                    { platform: 'x', url: 'https://x.com/' },
+                    { platform: 'pinterest', url: 'https://pinterest.com/' },
+                    { platform: 'spotify', url: 'https://spotify.com/' },
+                    { platform: 'telegram', url: 'https://telegram.org/' },
+                  ]}
+                />
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-text-primary">Horizontal Orientation</h3>
+              <div className="flex justify-center">
+                <SocialLinks
+                  orientation="horizontal"
+                  links={[
+                    { platform: 'linkedin', url: 'https://linkedin.com/' },
+                    { platform: 'github', url: 'https://www.github.com/' },
+                    { platform: 'instagram', url: 'https://www.instagram.com/' },
+                    { platform: 'youtube', url: 'https://youtube.com/' },
+                    { platform: 'facebook', url: 'https://facebook.com/' },
+                    { platform: 'x', url: 'https://x.com/' },
+                    { platform: 'pinterest', url: 'https://pinterest.com/' },
+                    { platform: 'spotify', url: 'https://spotify.com/' },
+                    { platform: 'telegram', url: 'https://telegram.org/' },
+                  ]}
+                />
+              </div>
             </div>
           </div>
         </section>

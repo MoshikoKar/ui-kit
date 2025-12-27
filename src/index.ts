@@ -38,6 +38,9 @@ export type { FormProps, FormFieldProps, FormFooterLinkProps } from './component
 export { SearchBar } from './components/SearchBar';
 export type { SearchBarProps, SearchBarSize } from './components/SearchBar';
 
+export { SocialLinks } from './components/SocialLinks';
+export type { SocialLinksProps, SocialLink, SocialPlatform, SocialLinksOrientation } from './components/SocialLinks';
+
 // Theme
 export { ThemeProvider, useTheme } from './theme/ThemeProvider';
 export type { Theme } from './theme/ThemeProvider';
