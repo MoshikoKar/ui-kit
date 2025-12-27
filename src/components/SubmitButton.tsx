@@ -31,9 +31,9 @@ const sizeClassMap: Record<SubmitButtonSize, string> = {
 };
 
 const variantClasses: Record<SubmitButtonVariant, string> = {
-  primary: 'text-[#7e97b8] bg-[#dbeafe] border-[rgba(255,255,255,0.333)] shadow-[-4px_-2px_16px_0px_#ffffff,4px_2px_16px_0px_rgb(59_130_246_/_48%)] hover:text-[#516d91] hover:bg-[#bfdbfe] hover:shadow-[-2px_-1px_8px_0px_#ffffff,2px_1px_8px_0px_rgb(59_130_246_/_48%)]',
-  secondary: 'text-[#6b7280] bg-[#d1fae5] border-[rgba(255,255,255,0.4)] shadow-[-4px_-2px_16px_0px_#ffffff,4px_2px_16px_0px_rgb(34_197_94_/_35%)] hover:text-[#4b5563] hover:bg-[#a7f3d0] hover:shadow-[-2px_-1px_8px_0px_#ffffff,2px_1px_8px_0px_rgb(34_197_94_/_35%)]',
-  danger: 'text-[#ef4444] bg-[#fecaca] border-[rgba(255,255,255,0.5)] shadow-[-4px_-2px_16px_0px_#ffffff,4px_2px_16px_0px_rgb(239_68_68_/_35%)] hover:text-[#dc2626] hover:bg-[#fed7d7] hover:shadow-[-2px_-1px_8px_0px_#ffffff,2px_1px_8px_0px_rgb(239_68_68_/_35%)]',
+  primary: 'text-[#7e97b8] bg-[#dbeafe] border-[rgba(255,255,255,0.333)] shadow-[-4px_-2px_8px_0px_#ffffff,4px_2px_8px_0px_rgb(59_130_246_/_24%)] hover:text-[#516d91] hover:bg-[#bfdbfe] hover:shadow-[-2px_-1px_4px_0px_#ffffff,2px_1px_4px_0px_rgb(59_130_246_/_24%)]',
+  secondary: 'text-[#6b7280] bg-[#d1fae5] border-[rgba(255,255,255,0.4)] shadow-[-4px_-2px_8px_0px_#ffffff,4px_2px_8px_0px_rgb(34_197_94_/_18%)] hover:text-[#4b5563] hover:bg-[#a7f3d0] hover:shadow-[-2px_-1px_4px_0px_#ffffff,2px_1px_4px_0px_rgb(34_197_94_/_18%)]',
+  danger: 'text-[#ef4444] bg-[#fecaca] border-[rgba(255,255,255,0.5)] shadow-[-4px_-2px_8px_0px_#ffffff,4px_2px_8px_0px_rgb(239_68_68_/_18%)] hover:text-[#dc2626] hover:bg-[#fed7d7] hover:shadow-[-2px_-1px_4px_0px_#ffffff,2px_1px_4px_0px_rgb(239_68_68_/_18%)]',
 };
 
 export const SubmitButton: React.FC<SubmitButtonProps> = ({
@@ -107,8 +107,8 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
                 <feDropShadow
                   dx="0"
                   dy="1"
-                  stdDeviation="0.6"
-                  floodOpacity="0.5"
+                  stdDeviation="0.3"
+                  floodOpacity="0.25"
                 ></feDropShadow>
               </filter>
             </defs>

@@ -9,17 +9,17 @@
   margin: 0 10px;
 }
 
-/* Size variants - 5% larger than Input (247px * 1.05 = 260px) */
+/* Size variants - minimum widths */
 .container--size-sm {
-  max-width: 260px;
+  min-width: 200px;
 }
 
 .container--size-md {
-  max-width: 260px;
+  min-width: 260px;
 }
 
 .container--size-lg {
-  max-width: 260px;
+  min-width: 320px;
 }
 
 .search-container {

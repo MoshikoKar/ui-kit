@@ -32,24 +32,18 @@ const FormContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: n
   return (
     <div
       className={cn(
-        'relative flex justify-center items-center overflow-hidden',
+        'relative flex justify-center items-center',
         'bg-surface-tertiary rounded-[24px]',
         'shadow-[0_4px_8px_rgba(0,0,0,0.2),0_8px_16px_rgba(0,0,0,0.2),0_0_8px_rgba(255,255,255,0.1),0_0_16px_rgba(255,255,255,0.08)]',
         'z-[8]',
         className
       )}
       style={{
-        width: `${width + 1}px`,
-        height: `${width * aspectRatio + 1}px`,
+        width: `${width}px`,
+        minHeight: `${width * aspectRatio}px`,
       }}
       {...props}
     >
-      <div
-        className="absolute inset-[-50px] z-[-2] form-border-animation"
-        style={{
-          background: 'conic-gradient(from 45deg, transparent 75%, var(--color-text-primary), transparent 100%)',
-        }}
-      />
       {children}
     </div>
   );
@@ -65,14 +59,14 @@ const FormBox: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: number;
   return (
     <div
       className={cn(
-        'absolute bg-surface-tertiary rounded-[24px] p-7 z-[10]',
+        'relative bg-surface-tertiary rounded-[24px] p-7 z-[10]',
         'backdrop-blur-[15px]',
         'shadow-[inset_0_40px_60px_-8px_rgba(255,255,255,0.12),inset_4px_0_12px_-6px_rgba(255,255,255,0.12),inset_0_0_12px_-4px_rgba(255,255,255,0.12)]',
+        'w-full',
         className
       )}
       style={{
-        width: `${width}px`,
-        height: `${width * aspectRatio}px`,
+        minHeight: `${width * aspectRatio}px`,
       }}
       {...props}
     >

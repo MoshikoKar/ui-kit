@@ -1,0 +1,24 @@
+import React from 'react';
+import { cn } from '../../utils/cn';
+
+interface ContainerProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Container: React.FC<ContainerProps> = ({ children, className }) => {
+  return (
+    <div className={cn('w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8', className)}>
+      {children}
+    </div>
+  );
+};
+
+export const Section: React.FC<ContainerProps> = ({ children, className }) => {
+  return (
+    <section className={cn('py-6 border-b border-border/50 last:border-b-0', className)}>
+      {children}
+    </section>
+  );
+};
+
