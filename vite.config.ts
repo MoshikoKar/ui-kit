@@ -20,11 +20,14 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: (id) => {
+        return id === 'react' || id === 'react-dom' || id.startsWith('react/') || id.startsWith('react-dom/');
+      },
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM'
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'React'
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'styles.css';
