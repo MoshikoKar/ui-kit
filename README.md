@@ -39,7 +39,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 ## Installation
 
 ```bash
-npm install @ui-kit/ui-kit
+npm install @possibly6400/ui-kit
 ```
 
 ## Usage
@@ -47,8 +47,8 @@ npm install @ui-kit/ui-kit
 Import components and styles separately:
 
 ```tsx
-import { Button, Input, ThemeProvider } from '@ui-kit/ui-kit';
-import '@ui-kit/ui-kit/styles'; // Required: Import styles explicitly
+import { Button, Input, ThemeProvider } from '@possibly6400/ui-kit';
+import '@possibly6400/ui-kit/styles'; // Required: Import styles explicitly
 
 function App() {
   return (
@@ -79,7 +79,7 @@ These global styles are intentional and necessary for the theme system to functi
 The UI Kit supports dark and light themes:
 
 ```tsx
-import { ThemeProvider, useTheme } from '@ui-kit/ui-kit';
+import { ThemeProvider, useTheme } from '@possibly6400/ui-kit';
 
 function App() {
   const { theme, setTheme } = useTheme();
@@ -263,7 +263,7 @@ Animated toggle switch with celestial sparkle effects and smooth transitions. Fe
 Animated theme toggle component with beautiful sun/moon and stars/clouds visual effects. Automatically integrates with the ThemeProvider to switch between dark and light modes.
 
 ```tsx
-import { ThemeSwitch, ThemeProvider } from '@ui-kit/ui-kit';
+import { ThemeSwitch, ThemeProvider } from '@possibly6400/ui-kit';
 
 function App() {
   return (
@@ -290,7 +290,7 @@ function App() {
 Animated loading spinner with two rotating circular faces featuring glowing effects. Perfect for indicating loading states in your application.
 
 ```tsx
-import { Loader, Spinner } from '@ui-kit/ui-kit';
+import { Loader, Spinner } from '@possibly6400/ui-kit';
 
 // Standalone spinner
 <Spinner size="sm" | "md" | "lg" />
@@ -328,7 +328,7 @@ import { Loader, Spinner } from '@ui-kit/ui-kit';
 Animated form container component with beautiful rotating border effect, backdrop blur, and composable form elements. Perfect for creating elegant login, signup, contact, and survey forms.
 
 ```tsx
-import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@ui-kit/ui-kit';
+import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@possibly6400/ui-kit';
 
 // Basic login form
 <Form

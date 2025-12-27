@@ -782,7 +782,7 @@ body {
 /* Card Styles - Dark Mode (default) */
 .card {
   border-radius: 24px;
-  background: #212121;
+  background: var(--color-surface-secondary);
   box-shadow:
     12px 12px 24px rgb(25, 25, 25),
     -6px -6px 24px rgb(60, 60, 60),
@@ -803,7 +803,7 @@ body {
 /* Card Styles - Light Mode */
 .theme-light .card {
   border-radius: 24px;
-  background: lightgrey;
+  background: var(--color-surface-secondary);
   box-shadow:
     12px 12px 24px rgba(50, 50, 93, 0.25),
     -6px -6px 24px rgba(0, 0, 0, 0.3),
