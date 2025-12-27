@@ -35,6 +35,9 @@ export type { ThemeSwitchProps } from './components/ThemeSwitch';
 export { Form, FormField, FormButton, FormFooter, FormFooterLink } from './components/Form';
 export type { FormProps, FormFieldProps, FormFooterLinkProps } from './components/Form';
 
+export { SearchBar } from './components/SearchBar';
+export type { SearchBarProps, SearchBarSize } from './components/SearchBar';
+
 // Theme
 export { ThemeProvider, useTheme } from './theme/ThemeProvider';
 export type { Theme } from './theme/ThemeProvider';

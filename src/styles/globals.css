@@ -77,6 +77,20 @@
   /* Input-specific colors */
   --input-shadow: rgb(5, 5, 5);
   --input-shadow-error: rgb(220, 38, 38);
+
+  /* SearchBar-specific colors - matching original hardcoded values */
+  --searchbar-container-gradient-start: rgb(179, 208, 253);
+  --searchbar-container-gradient-end: rgb(164, 202, 248);
+  --searchbar-container-bg-start: rgb(218, 232, 247);
+  --searchbar-container-bg-end: rgb(214, 229, 247);
+  --searchbar-container-before-start: rgb(218, 232, 247);
+  --searchbar-container-before-end: rgb(255, 255, 255);
+  --searchbar-container-after-start: rgb(163, 206, 255);
+  --searchbar-container-after-end: rgb(211, 232, 255);
+  --searchbar-input-color: #9EBCD9;
+  --searchbar-input-focus-start: rgb(239, 247, 255);
+  --searchbar-input-focus-end: rgb(214, 229, 247);
+  --searchbar-shadow-color: rgba(79, 156, 232, 0.7019607843);
 }
 
 /* Light mode theme variables */
@@ -154,6 +168,20 @@
   /* Input-specific colors */
   --input-shadow: rgba(0, 0, 0, 0.3);
   --input-shadow-error: rgba(220, 38, 38, 0.336);
+
+  /* SearchBar-specific colors - matching original hardcoded values */
+  --searchbar-container-gradient-start: rgb(179, 208, 253);
+  --searchbar-container-gradient-end: rgb(164, 202, 248);
+  --searchbar-container-bg-start: rgb(218, 232, 247);
+  --searchbar-container-bg-end: rgb(214, 229, 247);
+  --searchbar-container-before-start: rgb(218, 232, 247);
+  --searchbar-container-before-end: rgb(255, 255, 255);
+  --searchbar-container-after-start: rgb(163, 206, 255);
+  --searchbar-container-after-end: rgb(211, 232, 255);
+  --searchbar-input-color: #9EBCD9;
+  --searchbar-input-focus-start: rgb(239, 247, 255);
+  --searchbar-input-focus-end: rgb(214, 229, 247);
+  --searchbar-shadow-color: rgba(79, 156, 232, 0.7019607843);
 }
 
 /* Base styles */

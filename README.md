@@ -22,6 +22,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - **Toggle**: Switch/toggle component
 - **Loader**: Animated loading spinner with rotating faces and glowing effects
 - **ThemeSwitch**: Animated dark/light mode toggle with sun/moon and stars/clouds visual effects
+- **SearchBar**: Gradient search bar input with integrated search icon
 
 ### Semantic Wrappers
 
@@ -165,6 +166,16 @@ npm run lint
   size="sm" | "md" | "lg"
   error={boolean}
   placeholder="Enter text"
+  value={string}
+  onChange={function}
+/>
+```
+
+### SearchBar
+
+```tsx
+<SearchBar
+  placeholder="Search..."
   value={string}
   onChange={function}
 />

@@ -29,7 +29,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
           'bg-transparent',
           'border-none',
           'outline-none',
-          'max-w-[190px]',
+          'w-[247px]',
           'rounded-full',
           'text-text-primary',
           'transition-colors duration-200',

@@ -11,6 +11,7 @@ import { RadioButton, RadioGroup } from '../components/RadioButton';
 import { Tooltip } from '../components/Tooltip';
 import { ThemeSwitch } from '../components/ThemeSwitch';
 import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '../components/Form';
+import { SearchBar } from '../components/SearchBar';
 import { cn } from '../utils/cn';
 
 const ThemeToggle: React.FC = () => {
@@ -25,18 +26,16 @@ const ComponentShowcase: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [toggleChecked, setToggleChecked] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [radioValue, setRadioValue] = useState('option-1');
   const [tooltipOpenButton, setTooltipOpenButton] = useState(false);
   const [tooltipOpenIcon, setTooltipOpenIcon] = useState(false);
   const [tooltipOpenText, setTooltipOpenText] = useState(false);
   const [tooltipPositionOpen, setTooltipPositionOpen] = useState<'top' | 'right' | 'bottom' | 'left' | null>(null);
+  const [searchValue, setSearchValue] = useState('');
 
   const handleSubmit = async () => {
-    setLoading(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    setLoading(false);
   };
 
   return (
@@ -166,6 +165,32 @@ const ComponentShowcase: React.FC = () => {
                       )}
                     />
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* SearchBar Section */}
+            <div>
+              <h3 className="text-lg font-medium text-text-primary mb-4">SearchBar</h3>
+              <div className="space-y-4">
+                {(['sm', 'md', 'lg'] as const).map(size => (
+                  <div key={size} className="space-y-2">
+                    <label className="block text-sm font-medium text-text-primary">
+                      {size.toUpperCase()} SearchBar
+                    </label>
+                    <div className="flex justify-center">
+                      <SearchBar
+                        size={size}
+                        placeholder={`Search ${size}...`}
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        aria-label="Search"
+                      />
+                    </div>
+                  </div>
+                ))}
+                <div className="text-xs text-text-secondary text-center">
+                  Value: {searchValue || '(empty)'}
                 </div>
               </div>
             </div>
