@@ -801,13 +801,11 @@ body {
 }
 
 .card.vertical {
-  width: 190px;
-  height: 254px;
+  /* Content-based sizing - no fixed dimensions */
 }
 
 .card.horizontal {
-  width: 320px;
-  height: 160px;
+  /* Content-based sizing - no fixed dimensions */
 }
 
 /* Card Styles - Light Mode */
@@ -822,11 +820,9 @@ body {
 }
 
 .theme-light .card.vertical {
-  width: 190px;
-  height: 254px;
+  /* Content-based sizing - no fixed dimensions */
 }
 
 .theme-light .card.horizontal {
-  width: 320px;
-  height: 160px;
+  /* Content-based sizing - no fixed dimensions */
 }
