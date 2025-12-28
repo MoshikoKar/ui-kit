@@ -43,7 +43,7 @@ const variantClasses: Record<ConfirmModalVariant, { icon: string; buttonVariant:
 
 const ConfirmModalCard = React.forwardRef<
   HTMLDivElement,
-  { className?: string; children: React.ReactNode; role?: string; 'aria-modal'?: string; 'aria-labelledby'?: string; 'aria-describedby'?: string }
+  { className?: string; children: React.ReactNode; role?: string; 'aria-modal'?: boolean; 'aria-labelledby'?: string; 'aria-describedby'?: string }
 >(({ className, children, role, 'aria-modal': ariaModal, 'aria-labelledby': ariaLabelledBy, 'aria-describedby': ariaDescribedBy }, ref) => {
   return (
     <div
@@ -231,7 +231,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
       <ConfirmModalCard
         ref={modalRef}
         role="dialog"
-        aria-modal="true"
+        aria-modal={true}
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
         className="transform transition-all duration-200 scale-100"
