@@ -29,6 +29,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - **SocialLinks**: Social media links component with platform icons and tooltips
 - **ContextMenu**: Context menu component with grouped items, icons, and variants
 - **CookieConsent**: Configurable cookie consent card component with localStorage persistence
+- **ConfirmModal**: Generic confirmation modal for irreversible or sensitive actions with variant support
 
 ### Semantic Wrappers
 
@@ -584,6 +585,73 @@ import { CookieConsent } from '@possibly6400/ui-kit';
 - Reset consent by removing the storageKey from localStorage
 - For modal usage, wrap the component in a backdrop/overlay div
 - All styling is customizable via className props while maintaining sensible defaults
+
+### ConfirmModal
+
+Generic confirmation modal component for irreversible or sensitive actions. Fully data-driven with no hard-coded text, icons, or colors. Perfect for delete confirmations, warning dialogs, and other critical user actions.
+
+```tsx
+import { ConfirmModal } from '@possibly6400/ui-kit';
+
+const [isOpen, setIsOpen] = useState(false);
+
+<ConfirmModal
+  isOpen={isOpen}
+  title="Delete Item"
+  description="Are you sure you want to delete this item? This action cannot be undone."
+  icon={deleteIcon}
+  confirmLabel="Delete"
+  cancelLabel="Cancel"
+  variant="danger"
+  onConfirm={() => {
+    console.log('Confirmed');
+    setIsOpen(false);
+  }}
+  onCancel={() => setIsOpen(false)}
+  onClose={() => setIsOpen(false)}
+/>
+```
+
+**Props:**
+- `isOpen: boolean` - Controls modal visibility
+- `title: string` - Modal title text
+- `description: string` - Modal description text (supports multi-line with `\n`)
+- `icon?: React.ReactNode` - Optional icon/illustration
+- `confirmLabel: string` - Confirm button label
+- `cancelLabel: string` - Cancel button label
+- `variant?: "neutral" | "danger" | "warning" | "info"` - Visual variant (default: `"neutral"`)
+- `onConfirm: () => void` - Callback when confirm is clicked
+- `onCancel: () => void` - Callback when cancel is clicked
+- `onClose: () => void` - Callback when modal is closed (backdrop click or ESC key)
+- `className?: string` - Additional CSS classes for the backdrop
+- `iconClassName?: string` - Additional CSS classes for the icon wrapper
+- `contentClassName?: string` - Additional CSS classes for the content wrapper
+- `confirmButtonClassName?: string` - Additional CSS classes for the confirm button
+- `cancelButtonClassName?: string` - Additional CSS classes for the cancel button
+
+**Variants:**
+- `neutral` - Standard confirmation (primary button)
+- `danger` - Destructive actions (danger button, red icon)
+- `warning` - Warning messages (secondary button, yellow icon)
+- `info` - Informational confirmations (primary button, blue icon)
+
+**Features:**
+- Fully data-driven - no hard-coded text, icons, or colors
+- Backdrop click to close
+- ESC key to close
+- Focus trap - keyboard navigation stays within modal
+- Automatic focus management - focuses first button when opened
+- Accessibility - proper ARIA attributes (role="dialog", aria-modal, aria-labelledby, aria-describedby)
+- Dark mode support - theme-aware colors and styling
+- Uses Button component - consistent styling with rest of UI kit
+- Smooth transitions - subtle opacity and scale animations
+
+**Usage Notes:**
+- Component uses the Button component internally for consistent styling
+- All text content must be provided via props (no defaults)
+- Icon is optional - layout adapts when omitted
+- Description supports multi-line text using `\n` or whitespace-pre-line
+- Modal automatically manages focus and keyboard navigation
 
 ### Form
 
