@@ -99,6 +99,7 @@ module.exports = {
   plugins: [
     function({ addVariant }) {
       addVariant('theme-light', '.theme-light &');
+      addVariant('theme-dark', '.theme-dark &');
     },
   ],
 }
