@@ -47,6 +47,9 @@ export type { ContextMenuProps, ContextMenuGroupProps, ContextMenuItemProps, Con
 export { CookieConsent } from './components/CookieConsent';
 export type { CookieConsentProps } from './components/CookieConsent';
 
+export { ConfirmModal } from './components/ConfirmModal';
+export type { ConfirmModalProps, ConfirmModalVariant } from './components/ConfirmModal';
+
 // Theme
 export { ThemeProvider, useTheme } from './theme/ThemeProvider';
 export type { Theme } from './theme/ThemeProvider';
