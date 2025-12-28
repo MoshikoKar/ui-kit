@@ -11,6 +11,7 @@ import { TooltipsShowcase } from './showcases/TooltipsShowcase';
 import { SocialLinksShowcase } from './showcases/SocialLinksShowcase';
 import { ContextMenuShowcase } from './showcases/ContextMenuShowcase';
 import { FormsPatternsShowcase } from './showcases/FormsPatternsShowcase';
+import { CookieConsentShowcase } from './showcases/CookieConsentShowcase';
 import { LandingPage } from './LandingPage';
 import { Button } from '../components/Button';
 
@@ -29,6 +30,7 @@ const ComponentShowcase: React.FC = () => {
         <SocialLinksShowcase />
         <ContextMenuShowcase />
         <FormsPatternsShowcase />
+        <CookieConsentShowcase />
       </main>
     </div>
   );

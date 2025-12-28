@@ -28,6 +28,7 @@ A reusable, themeable component library built with React, TypeScript, and Tailwi
 - **Tooltip**: Accessible tooltip component with position control and delay support
 - **SocialLinks**: Social media links component with platform icons and tooltips
 - **ContextMenu**: Context menu component with grouped items, icons, and variants
+- **CookieConsent**: Configurable cookie consent card component with localStorage persistence
 
 ### Semantic Wrappers
 
@@ -518,6 +519,71 @@ import { ContextMenu } from '@possibly6400/ui-kit';
 - Variant styling (default, danger, accent)
 - Disabled state support
 - Theme-aware styling
+
+### CookieConsent
+
+Configurable cookie consent card component with localStorage persistence. A pure UI component that can be used inline or within a modal wrapper.
+
+```tsx
+import { CookieConsent } from '@possibly6400/ui-kit';
+
+<CookieConsent
+  title="Your privacy is important to us"
+  description="We process your personal information to measure and improve our sites and services, to assist our campaigns and to provide personalised content."
+  privacyLink="/privacy"
+  privacyLinkText="Privacy Policy"
+  acceptLabel="Accept"
+  optionsLabel="More Options"
+  onAccept={() => console.log('Accepted')}
+  onOptions={() => console.log('More options')}
+  storageKey="cookie-consent"
+  storageValue="accepted"
+  icon={cookieIcon}
+  privacyLinkTarget="_blank"
+  privacyLinkRel="noopener noreferrer"
+  className="transition-transform duration-300"
+  iconClassName=""
+  contentClassName=""
+  acceptButtonClassName=""
+  optionsButtonClassName=""
+/>
+```
+
+**Props:**
+- `title: string` - Consent card title
+- `description: string` - Consent description text
+- `privacyLink: string` - Privacy policy URL
+- `privacyLinkText: string` - Privacy policy link text
+- `acceptLabel: string` - Accept button label
+- `optionsLabel: string` - More options button label
+- `onAccept: () => void` - Callback when accept is clicked
+- `onOptions: () => void` - Callback when more options is clicked
+- `storageKey: string` - localStorage key for persisting consent
+- `storageValue: string` - Value to store when consent is accepted
+- `icon?: React.ReactNode` - Optional icon/illustration (typically a cookie icon)
+- `privacyLinkTarget?: string` - Link target attribute (e.g., "_blank")
+- `privacyLinkRel?: string` - Link rel attribute (e.g., "noopener noreferrer")
+- `className?: string` - Additional CSS classes for the card container
+- `iconClassName?: string` - Additional CSS classes for the icon wrapper
+- `contentClassName?: string` - Additional CSS classes for the content wrapper
+- `acceptButtonClassName?: string` - Additional CSS classes for the accept button
+- `optionsButtonClassName?: string` - Additional CSS classes for the options button
+
+**Features:**
+- Pure UI component - no modal/backdrop assumptions
+- localStorage persistence - automatically checks and stores consent state
+- Fully props-driven - all text, links, and behavior controlled via props
+- Optional icon support - layout adapts when icon is omitted
+- Customizable styling - all elements can be styled via className props
+- Dark mode support - theme-aware colors and styling
+- Accessible - proper semantic HTML and keyboard navigation
+- Inline or modal usage - can be embedded anywhere or wrapped in a modal
+
+**Usage Notes:**
+- Component automatically hides once consent is stored in localStorage
+- Reset consent by removing the storageKey from localStorage
+- For modal usage, wrap the component in a backdrop/overlay div
+- All styling is customizable via className props while maintaining sensible defaults
 
 ### Form
 

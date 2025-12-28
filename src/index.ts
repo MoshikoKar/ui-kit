@@ -44,6 +44,9 @@ export type { SocialLinksProps, SocialLink, SocialPlatform, SocialLinksOrientati
 export { ContextMenu, ContextMenuGroup, ContextMenuItem, ContextMenuSeparator } from './components/ContextMenu';
 export type { ContextMenuProps, ContextMenuGroupProps, ContextMenuItemProps, ContextMenuItemData, ContextMenuGroupData, ContextMenuItemVariant } from './components/ContextMenu';
 
+export { CookieConsent } from './components/CookieConsent';
+export type { CookieConsentProps } from './components/CookieConsent';
+
 // Theme
 export { ThemeProvider, useTheme } from './theme/ThemeProvider';
 export type { Theme } from './theme/ThemeProvider';
