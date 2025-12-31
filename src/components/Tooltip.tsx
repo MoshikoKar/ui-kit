@@ -111,7 +111,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const child = React.Children.only(children) as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
   const tooltipId = React.useId();
 
-  const handleBlur = (e: React.FocusEvent) => {
+  const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
     // Only close if focus moved outside both tooltip and trigger
     const relatedTarget = e.relatedTarget as Node | null;
     const isInsideWrapper = wrapperRef.current?.contains(relatedTarget);
@@ -127,11 +127,11 @@ export const Tooltip: React.FC<TooltipProps> = ({
     <span ref={wrapperRef} className={cn('relative inline-block', className)}>
       {React.cloneElement(child, {
         'aria-describedby': open && !disabled ? tooltipId : undefined,
-        onMouseEnter: (e: React.MouseEvent) => {
+        onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
           child.props.onMouseEnter?.(e);
           requestOpen();
         },
-        onMouseLeave: (e: React.MouseEvent) => {
+        onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
           child.props.onMouseLeave?.(e);
           // Don't close if moving to tooltip content
           const relatedTarget = e.relatedTarget as Node | null;
@@ -139,7 +139,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
             requestClose();
           }
         },
-        onFocus: (e: React.FocusEvent) => {
+        onFocus: (e: React.FocusEvent<HTMLElement>) => {
           child.props.onFocus?.(e);
           requestOpen();
         },
