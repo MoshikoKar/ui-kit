@@ -35,6 +35,8 @@ export default defineConfig({
         }
       }
     },
-    cssCodeSplit: false
+    cssCodeSplit: false,
+    // Enable source maps for better debugging
+    sourcemap: true
   }
 })

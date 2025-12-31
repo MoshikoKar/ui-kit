@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Input } from '../../components/Input';
-import { Checkbox } from '../../components/Checkbox';
-import { Toggle } from '../../components/Toggle';
-import { SearchBar } from '../../components/SearchBar';
-import { cn } from '../../utils/cn';
+import { Input } from '../../src/components/Input';
+import { Checkbox } from '../../src/components/Checkbox';
+import { Toggle } from '../../src/components/Toggle';
+import { SearchBar } from '../../src/components/SearchBar';
+import { cn } from '../../src/utils/cn';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 export const FormControlsShowcase: React.FC = () => {

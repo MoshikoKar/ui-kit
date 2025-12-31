@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from '../theme/ThemeProvider';
+import { ThemeProvider } from '../src/theme/ThemeProvider';
 import { Header } from './layout/Header';
 import { ThemeToggle } from './layout/ThemeToggle';
 import { ButtonsShowcase } from './showcases/ButtonsShowcase';
@@ -14,7 +14,7 @@ import { FormsPatternsShowcase } from './showcases/FormsPatternsShowcase';
 import { CookieConsentShowcase } from './showcases/CookieConsentShowcase';
 import { ConfirmModalShowcase } from './showcases/ConfirmModalShowcase';
 import { LandingPage } from './LandingPage';
-import { Button } from '../components/Button';
+import { Button } from '../src/components/Button';
 
 const ComponentShowcase: React.FC = () => {
   return (

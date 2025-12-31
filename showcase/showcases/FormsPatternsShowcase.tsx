@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '../../components/Form';
-import { Checkbox } from '../../components/Checkbox';
-import { RadioButton, RadioGroup } from '../../components/RadioButton';
-import { SubmitButton } from '../../components/SubmitButton';
+import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '../../src/components/Form';
+import { Checkbox } from '../../src/components/Checkbox';
+import { RadioButton, RadioGroup } from '../../src/components/RadioButton';
+import { SubmitButton } from '../../src/components/SubmitButton';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 export const FormsPatternsShowcase: React.FC = () => {

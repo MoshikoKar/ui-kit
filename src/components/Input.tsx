@@ -3,8 +3,13 @@ import { cn } from '../utils/cn';
 
 export type InputSize = 'sm' | 'md' | 'lg';
 
+/**
+ * Props for the Input component.
+ */
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  /** Size of the input field. Defaults to 'md'. */
   size?: InputSize;
+  /** Whether the input is in an error state. */
   error?: boolean;
 }
 
@@ -14,6 +19,18 @@ const sizeClasses: Record<InputSize, string> = {
   lg: 'px-6 py-3 text-lg',
 };
 
+/**
+ * A styled input component with error state support.
+ * 
+ * @example
+ * ```tsx
+ * <Input 
+ *   placeholder="Enter your email"
+ *   type="email"
+ *   error={hasError}
+ * />
+ * ```
+ */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
   size = 'md',
   error = false,

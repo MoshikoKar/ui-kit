@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../../components/Button';
-import { SubmitButton } from '../../components/SubmitButton';
+import { Button } from '../../src/components/Button';
+import { SubmitButton } from '../../src/components/SubmitButton';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 export const ButtonsShowcase: React.FC = () => {

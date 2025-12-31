@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Section } from './Container';
-import { cn } from '../../utils/cn';
+import { cn } from '../../src/utils/cn';
 
 interface ShowcaseSectionProps {
   title: string;

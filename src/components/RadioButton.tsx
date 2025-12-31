@@ -10,15 +10,40 @@ type RadioGroupContextValue = {
 
 const RadioGroupContext = React.createContext<RadioGroupContextValue | null>(null);
 
+/**
+ * Props for the RadioGroup component.
+ */
 export interface RadioGroupProps extends Omit<React.HTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
+  /** Name attribute for all radio buttons in the group. */
   name?: string;
+  /** Legend text displayed above the radio group. */
   legend?: string;
+  /** Currently selected value (controlled). */
   value?: string;
+  /** Default selected value (uncontrolled). */
   defaultValue?: string;
+  /** Whether all radio buttons in the group are disabled. */
   disabled?: boolean;
+  /** Callback when the selected value changes. */
   onValueChange?: (value: string) => void;
 }
 
+/**
+ * A group container for RadioButton components with keyboard navigation.
+ * 
+ * @example
+ * ```tsx
+ * <RadioGroup 
+ *   legend="Select an option" 
+ *   value={selected}
+ *   onValueChange={setSelected}
+ * >
+ *   <RadioButton value="option1" label="Option 1" />
+ *   <RadioButton value="option2" label="Option 2" />
+ *   <RadioButton value="option3" label="Option 3" />
+ * </RadioGroup>
+ * ```
+ */
 export const RadioGroup: React.FC<RadioGroupProps> = ({
   name,
   legend,
@@ -56,14 +81,40 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   );
 };
 
+/**
+ * Props for the RadioButton component.
+ */
 export interface RadioButtonProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+  /** Label text displayed next to the radio button. */
   label?: string;
+  /** Value of this radio button option. */
   value: string;
+  /** Whether this radio button is disabled. */
   disabled?: boolean;
+  /** Callback when the checked state changes. */
   onCheckedChange?: (checked: boolean) => void;
 }
 
+/**
+ * A styled radio button component that works standalone or within a RadioGroup.
+ * 
+ * @example
+ * ```tsx
+ * // Standalone
+ * <RadioButton 
+ *   value="option1" 
+ *   label="Option 1"
+ *   checked={selected === 'option1'}
+ *   onChange={(e) => setSelected(e.target.value)}
+ * />
+ * 
+ * // Within RadioGroup (preferred)
+ * <RadioGroup value={selected} onValueChange={setSelected}>
+ *   <RadioButton value="option1" label="Option 1" />
+ * </RadioGroup>
+ * ```
+ */
 export const RadioButton: React.FC<RadioButtonProps> = ({
   label,
   value,
@@ -131,5 +182,3 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
 
   return labelElement;
 };
-
-

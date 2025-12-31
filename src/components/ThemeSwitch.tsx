@@ -2,11 +2,25 @@ import React from 'react';
 import { useTheme } from '../theme/ThemeProvider';
 import { cn } from '../utils/cn';
 
+/**
+ * Props for the ThemeSwitch component.
+ */
 export interface ThemeSwitchProps {
+  /** Additional className for the wrapper. */
   className?: string;
+  /** Whether to show the current theme label. Defaults to true. */
   showLabel?: boolean;
 }
 
+/**
+ * An animated theme toggle switch between light and dark modes.
+ * Uses the ThemeProvider context to manage theme state.
+ * 
+ * @example
+ * ```tsx
+ * <ThemeSwitch showLabel={false} />
+ * ```
+ */
 export const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
   className,
   showLabel = true,
@@ -73,4 +87,3 @@ export const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
     </div>
   );
 };
-

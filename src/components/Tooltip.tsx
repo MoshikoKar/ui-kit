@@ -3,14 +3,25 @@ import { cn } from '../utils/cn';
 
 export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
 
+/**
+ * Props for the Tooltip component.
+ */
 export interface TooltipProps {
+  /** Whether the tooltip is currently open. */
   open: boolean;
+  /** Callback when the tooltip open state should change. */
   onOpenChange?: (open: boolean) => void;
+  /** Content to display inside the tooltip. */
   content: React.ReactNode;
+  /** Position of the tooltip relative to the trigger. Defaults to 'top'. */
   position?: TooltipPosition;
+  /** Delay in milliseconds before showing the tooltip. Defaults to 0. */
   delay?: number;
+  /** Whether the tooltip is disabled. */
   disabled?: boolean;
-  children: React.ReactElement<any>;
+  /** The trigger element that the tooltip is attached to. */
+  children: React.ReactElement<React.HTMLAttributes<HTMLElement>>;
+  /** Additional className for the wrapper. */
   className?: string;
 }
 
@@ -42,6 +53,23 @@ const arrowFillClasses: Record<TooltipPosition, string> = {
   right: 'right-full top-1/2 -translate-y-1/2 -mr-[5px]',
 };
 
+/**
+ * A tooltip component with keyboard and focus support.
+ * Supports interactive content by not closing when focus moves within the tooltip.
+ * 
+ * @example
+ * ```tsx
+ * const [open, setOpen] = React.useState(false);
+ * 
+ * <Tooltip 
+ *   open={open} 
+ *   onOpenChange={setOpen} 
+ *   content="Helpful information"
+ * >
+ *   <button>Hover me</button>
+ * </Tooltip>
+ * ```
+ */
 export const Tooltip: React.FC<TooltipProps> = ({
   open,
   onOpenChange,
@@ -53,6 +81,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
   className,
 }) => {
   const timerRef = React.useRef<number | null>(null);
+  const tooltipRef = React.useRef<HTMLSpanElement>(null);
+  const wrapperRef = React.useRef<HTMLSpanElement>(null);
 
   const clearTimer = () => {
     if (timerRef.current !== null) {
@@ -78,11 +108,23 @@ export const Tooltip: React.FC<TooltipProps> = ({
     onOpenChange?.(false);
   };
 
-  const child = React.Children.only(children) as React.ReactElement<any>;
+  const child = React.Children.only(children) as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
   const tooltipId = React.useId();
 
+  const handleBlur = (e: React.FocusEvent) => {
+    // Only close if focus moved outside both tooltip and trigger
+    const relatedTarget = e.relatedTarget as Node | null;
+    const isInsideWrapper = wrapperRef.current?.contains(relatedTarget);
+    const isInsideTooltip = tooltipRef.current?.contains(relatedTarget);
+    
+    if (!isInsideWrapper && !isInsideTooltip) {
+      requestClose();
+    }
+    child.props.onBlur?.(e);
+  };
+
   return (
-    <span className={cn('relative inline-block', className)}>
+    <span ref={wrapperRef} className={cn('relative inline-block', className)}>
       {React.cloneElement(child, {
         'aria-describedby': open && !disabled ? tooltipId : undefined,
         onMouseEnter: (e: React.MouseEvent) => {
@@ -91,35 +133,39 @@ export const Tooltip: React.FC<TooltipProps> = ({
         },
         onMouseLeave: (e: React.MouseEvent) => {
           child.props.onMouseLeave?.(e);
-          requestClose();
+          // Don't close if moving to tooltip content
+          const relatedTarget = e.relatedTarget as Node | null;
+          if (!tooltipRef.current?.contains(relatedTarget)) {
+            requestClose();
+          }
         },
         onFocus: (e: React.FocusEvent) => {
           child.props.onFocus?.(e);
           requestOpen();
         },
-        onBlur: (e: React.FocusEvent) => {
-          child.props.onBlur?.(e);
-          requestClose();
-        },
-      })}
+        onBlur: handleBlur,
+      } as Partial<React.HTMLAttributes<HTMLElement>>)}
 
       {open && !disabled && (
         <span
+          ref={tooltipRef}
           id={tooltipId}
           role="tooltip"
           className={cn(
-            'absolute z-50 pointer-events-none',
+            'absolute z-50',
             positionClasses[position],
             'whitespace-nowrap',
             'rounded-md border border-border bg-surface text-text-primary',
             'px-3 py-2 text-xs shadow-md'
           )}
+          onMouseEnter={requestOpen}
+          onMouseLeave={requestClose}
         >
           {content}
           {/* Arrow border */}
           <span
             className={cn(
-              'absolute w-0 h-0',
+              'absolute w-0 h-0 pointer-events-none',
               arrowClasses[position],
               arrowBorderClasses[position]
             )}
@@ -127,7 +173,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
           {/* Arrow fill */}
           <span
             className={cn(
-              'absolute w-0 h-0 bg-surface',
+              'absolute w-0 h-0 bg-surface pointer-events-none',
               arrowFillClasses[position],
               position === 'top' && 'border-t-[5px] border-r-[5px] border-l-[5px] border-t-surface border-r-transparent border-l-transparent',
               position === 'bottom' && 'border-b-[5px] border-r-[5px] border-l-[5px] border-b-surface border-r-transparent border-l-transparent',
@@ -140,5 +186,3 @@ export const Tooltip: React.FC<TooltipProps> = ({
     </span>
   );
 };
-
-

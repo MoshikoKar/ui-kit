@@ -1,24 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { cn } from '../utils/cn';
 import { Button, ButtonVariant } from './Button';
 
 export type ConfirmModalVariant = 'neutral' | 'danger' | 'warning' | 'info';
 
+/**
+ * Props for the ConfirmModal component.
+ */
 export interface ConfirmModalProps {
+  /** Whether the modal is currently open. */
   isOpen: boolean;
+  /** Title text displayed at the top of the modal. */
   title: string;
+  /** Description text explaining the action. */
   description: string;
+  /** Optional icon to display above the title. */
   icon?: React.ReactNode;
+  /** Label for the confirm button. */
   confirmLabel: string;
+  /** Label for the cancel button. */
   cancelLabel: string;
+  /** Visual variant affecting the confirm button style. Defaults to 'neutral'. */
   variant?: ConfirmModalVariant;
+  /** Callback when the confirm button is clicked. */
   onConfirm: () => void;
+  /** Callback when the cancel button is clicked. */
   onCancel: () => void;
+  /** Callback when the modal is closed (via backdrop click or escape). */
   onClose: () => void;
+  /** Additional className for the backdrop. */
   className?: string;
+  /** Additional className for the icon container. */
   iconClassName?: string;
+  /** Additional className for the content container. */
   contentClassName?: string;
+  /** Additional className for the confirm button. */
   confirmButtonClassName?: string;
+  /** Additional className for the cancel button. */
   cancelButtonClassName?: string;
 }
 
@@ -127,6 +145,25 @@ const ConfirmModalActions: React.FC<{
   );
 };
 
+/**
+ * A confirmation modal dialog with focus trapping and keyboard accessibility.
+ * Automatically restores focus to the previously focused element on close.
+ * 
+ * @example
+ * ```tsx
+ * <ConfirmModal
+ *   isOpen={showModal}
+ *   title="Delete Item"
+ *   description="Are you sure you want to delete this item?"
+ *   confirmLabel="Delete"
+ *   cancelLabel="Cancel"
+ *   variant="danger"
+ *   onConfirm={handleDelete}
+ *   onCancel={() => setShowModal(false)}
+ *   onClose={() => setShowModal(false)}
+ * />
+ * ```
+ */
 export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   isOpen,
   title,
@@ -145,8 +182,20 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   cancelButtonClassName,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const titleId = useRef(`confirm-modal-title-${Math.random().toString(36).substr(2, 9)}`).current;
-  const descriptionId = useRef(`confirm-modal-description-${Math.random().toString(36).substr(2, 9)}`).current;
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+  const titleId = React.useId();
+  const descriptionId = React.useId();
+
+  // Store the previously focused element and restore on close
+  useEffect(() => {
+    if (isOpen) {
+      previousActiveElement.current = document.activeElement as HTMLElement;
+    } else if (previousActiveElement.current) {
+      // Restore focus when modal closes
+      previousActiveElement.current.focus();
+      previousActiveElement.current = null;
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -167,13 +216,12 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
       firstElement.focus();
     }
 
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
+        return;
       }
-    };
 
-    const handleTab = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
 
       if (focusableElements.length === 0) {
@@ -194,26 +242,34 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    document.addEventListener('keydown', handleTab);
+    // Handle focus moving outside modal (e.g., browser UI interaction)
+    const handleFocusIn = (e: FocusEvent) => {
+      if (modalElement && !modalElement.contains(e.target as Node)) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('focusin', handleFocusIn);
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('keydown', handleTab);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('focusin', handleFocusIn);
     };
   }, [isOpen, onClose]);
+
+  const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  }, [onClose]);
 
   if (!isOpen) {
     return null;
   }
 
   const variantStyle = variantClasses[variant];
-
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
 
   return (
     <div
@@ -270,4 +326,3 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
     </div>
   );
 };
-

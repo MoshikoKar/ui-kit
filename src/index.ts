@@ -33,7 +33,7 @@ export { ThemeSwitch } from './components/ThemeSwitch';
 export type { ThemeSwitchProps } from './components/ThemeSwitch';
 
 export { Form, FormField, FormButton, FormFooter, FormFooterLink } from './components/Form';
-export type { FormProps, FormFieldProps, FormFooterLinkProps } from './components/Form';
+export type { FormProps, FormFieldProps, FormFooterLinkProps, FormSize } from './components/Form';
 
 export { SearchBar } from './components/SearchBar';
 export type { SearchBarProps, SearchBarSize } from './components/SearchBar';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RadioButton, RadioGroup } from '../../components/RadioButton';
+import { RadioButton, RadioGroup } from '../../src/components/RadioButton';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 export const RadioButtonsShowcase: React.FC = () => {

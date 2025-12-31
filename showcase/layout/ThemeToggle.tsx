@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeSwitch } from '../../components/ThemeSwitch';
+import { ThemeSwitch } from '../../src/components/ThemeSwitch';
 
 export const ThemeToggle: React.FC = () => {
   return (
@@ -8,4 +8,3 @@ export const ThemeToggle: React.FC = () => {
     </div>
   );
 };
-

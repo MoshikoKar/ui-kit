@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Tooltip } from '../../components/Tooltip';
-import { Button } from '../../components/Button';
+import { Tooltip } from '../../src/components/Tooltip';
+import { Button } from '../../src/components/Button';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 export const TooltipsShowcase: React.FC = () => {

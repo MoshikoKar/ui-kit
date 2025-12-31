@@ -1,14 +1,21 @@
-import React, { useState, useId, useRef } from 'react';
+import React, { useState, useId, useRef, useEffect, useCallback } from 'react';
 import { cn } from '../utils/cn';
 import styles from './SubmitButton.module.css';
 
 export type SubmitButtonVariant = 'primary' | 'secondary' | 'danger';
 export type SubmitButtonSize = 'sm' | 'md' | 'lg';
 
+/**
+ * Props for the SubmitButton component.
+ */
 export interface SubmitButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+  /** Text displayed after successful submission. Defaults to 'Sent'. */
   successText?: string;
+  /** Async function called on button click. Shows success state on resolve. */
   onSubmit?: () => Promise<void> | void;
+  /** Visual style variant. Defaults to 'primary'. */
   variant?: SubmitButtonVariant;
+  /** Size of the button. Defaults to 'md'. */
   size?: SubmitButtonSize;
 }
 
@@ -36,6 +43,16 @@ const variantClasses: Record<SubmitButtonVariant, string> = {
   danger: 'text-[#ef4444] bg-[#fecaca] border-[rgba(255,255,255,0.5)] shadow-[-4px_-2px_8px_0px_#ffffff,4px_2px_8px_0px_rgb(239_68_68_/_18%)] hover:text-[#dc2626] hover:bg-[#fed7d7] hover:shadow-[-2px_-1px_4px_0px_#ffffff,2px_1px_4px_0px_rgb(239_68_68_/_18%)]',
 };
 
+/**
+ * A submit button with animated success state.
+ * 
+ * @example
+ * ```tsx
+ * <SubmitButton onSubmit={handleSubmit}>
+ *   Send Message
+ * </SubmitButton>
+ * ```
+ */
 export const SubmitButton: React.FC<SubmitButtonProps> = ({
   children = 'Send Message',
   successText = 'Sent',
@@ -47,72 +64,115 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
   ...props
 }) => {
   const [success, setSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const shadowFilterId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const timeoutRef = useRef<number | undefined>(undefined);
 
-  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (onSubmit && !success) {
+  // Cleanup timeout on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current !== undefined) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleClick = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Prevent race condition: don't allow multiple simultaneous submissions
+    if (onSubmit && !success && !isSubmitting) {
       try {
+        setIsSubmitting(true);
         await onSubmit();
         setSuccess(true);
-        // Keep focus to show the success animation
-        buttonRef.current?.focus();
+        // Clear any existing timeout
+        if (timeoutRef.current !== undefined) {
+          window.clearTimeout(timeoutRef.current);
+        }
         // Reset success state after 3 seconds
-        setTimeout(() => {
+        timeoutRef.current = window.setTimeout(() => {
           setSuccess(false);
-          buttonRef.current?.blur();
         }, 3000);
       } catch (error) {
         console.error('Submit failed:', error);
         // Error state handled - no visual changes per requirements
+      } finally {
+        setIsSubmitting(false);
       }
     }
     // Call the original onClick if provided
     props.onClick?.(event);
-  };
+  }, [onSubmit, success, isSubmitting, props.onClick]);
 
   return (
     <button
       {...props}
       ref={buttonRef}
       type="submit"
-      disabled={disabled}
+      disabled={disabled || isSubmitting}
       onClick={handleClick}
       className={cn(styles.button, variantClasses[variant], sizeClassMap[size], className)}
       aria-label={success ? 'Submission successful' : (props['aria-label'] || 'Submit')}
-      aria-disabled={disabled}
+      aria-disabled={disabled || isSubmitting}
+      aria-busy={isSubmitting}
     >
       <div className={styles.outline}></div>
       <div className={cn(styles.state, styles['state--default'])}>
         <div className={styles.icon}>
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g style={{ filter: `url(#${shadowFilterId})` }}>
+          {isSubmitting ? (
+            <svg
+              className="animate-spin"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
               <path
-                d="M14.2199 21.63C13.0399 21.63 11.3699 20.8 10.0499 16.83L9.32988 14.67L7.16988 13.95C3.20988 12.63 2.37988 10.96 2.37988 9.78001C2.37988 8.61001 3.20988 6.93001 7.16988 5.60001L15.6599 2.77001C17.7799 2.06001 19.5499 2.27001 20.6399 3.35001C21.7299 4.43001 21.9399 6.21001 21.2299 8.33001L18.3999 16.82C17.0699 20.8 15.3999 21.63 14.2199 21.63ZM7.63988 7.03001C4.85988 7.96001 3.86988 9.06001 3.86988 9.78001C3.86988 10.5 4.85988 11.6 7.63988 12.52L10.1599 13.36C10.3799 13.43 10.5599 13.61 10.6299 13.83L11.4699 16.35C12.3899 19.13 13.4999 20.12 14.2199 20.12C14.9399 20.12 16.0399 19.13 16.9699 16.35L19.7999 7.86001C20.3099 6.32001 20.2199 5.06001 19.5699 4.41001C18.9199 3.76001 17.6599 3.68001 16.1299 4.19001L7.63988 7.03001Z"
-                fill="#6b7280"
-              ></path>
-              <path
-                d="M10.11 14.4C9.92005 14.4 9.73005 14.33 9.58005 14.18C9.29005 13.89 9.29005 13.41 9.58005 13.12L13.16 9.53C13.45 9.24 13.93 9.24 14.22 9.53C14.51 9.82 14.51 10.3 14.22 10.59L10.64 14.18C10.5 14.33 10.3 14.4 10.11 14.4Z"
-                fill="#6b7280"
-              ></path>
-            </g>
-            <defs>
-              <filter id={shadowFilterId}>
-                <feDropShadow
-                  dx="0"
-                  dy="1"
-                  stdDeviation="0.3"
-                  floodOpacity="0.25"
-                ></feDropShadow>
-              </filter>
-            </defs>
-          </svg>
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+          ) : (
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g style={{ filter: `url(#${shadowFilterId})` }}>
+                <path
+                  d="M14.2199 21.63C13.0399 21.63 11.3699 20.8 10.0499 16.83L9.32988 14.67L7.16988 13.95C3.20988 12.63 2.37988 10.96 2.37988 9.78001C2.37988 8.61001 3.20988 6.93001 7.16988 5.60001L15.6599 2.77001C17.7799 2.06001 19.5499 2.27001 20.6399 3.35001C21.7299 4.43001 21.9399 6.21001 21.2299 8.33001L18.3999 16.82C17.0699 20.8 15.3999 21.63 14.2199 21.63ZM7.63988 7.03001C4.85988 7.96001 3.86988 9.06001 3.86988 9.78001C3.86988 10.5 4.85988 11.6 7.63988 12.52L10.1599 13.36C10.3799 13.43 10.5599 13.61 10.6299 13.83L11.4699 16.35C12.3899 19.13 13.4999 20.12 14.2199 20.12C14.9399 20.12 16.0399 19.13 16.9699 16.35L19.7999 7.86001C20.3099 6.32001 20.2199 5.06001 19.5699 4.41001C18.9199 3.76001 17.6599 3.68001 16.1299 4.19001L7.63988 7.03001Z"
+                  fill="#6b7280"
+                ></path>
+                <path
+                  d="M10.11 14.4C9.92005 14.4 9.73005 14.33 9.58005 14.18C9.29005 13.89 9.29005 13.41 9.58005 13.12L13.16 9.53C13.45 9.24 13.93 9.24 14.22 9.53C14.51 9.82 14.51 10.3 14.22 10.59L10.64 14.18C10.5 14.33 10.3 14.4 10.11 14.4Z"
+                  fill="#6b7280"
+                ></path>
+              </g>
+              <defs>
+                <filter id={shadowFilterId}>
+                  <feDropShadow
+                    dx="0"
+                    dy="1"
+                    stdDeviation="0.3"
+                    floodOpacity="0.25"
+                  ></feDropShadow>
+                </filter>
+              </defs>
+            </svg>
+          )}
         </div>
         <p>{splitText(typeof children === 'string' ? children : 'Send Message')}</p>
       </div>

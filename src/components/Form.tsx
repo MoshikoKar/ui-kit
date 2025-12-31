@@ -3,18 +3,35 @@ import { cn } from '../utils/cn';
 import { Input } from './Input';
 import { Button } from './Button';
 
+export type FormSize = 'sm' | 'md' | 'lg' | 'full';
+
+/**
+ * Props for the Form component.
+ */
 export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  /** Form title displayed at the top. */
   title?: string;
+  /** Whether to show the logo placeholder. */
   showLogo?: boolean;
+  /** Footer content rendered below the form. */
   footer?: React.ReactNode;
-  width?: number;
-  aspectRatio?: number;
+  /** Responsive size preset. Defaults to 'md'. */
+  size?: FormSize;
+  /** Custom className for additional styling. */
   className?: string;
 }
 
+/**
+ * Props for FormField component.
+ */
 export interface FormFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  /** Label text displayed above the input. */
   label?: string;
-  error?: boolean;
+  /** Error state or error message string. */
+  error?: boolean | string;
+  /** Helper text displayed below the input. */
+  helperText?: string;
+  /** Size of the input field. */
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -22,9 +39,27 @@ export interface FormFooterLinkProps extends React.AnchorHTMLAttributes<HTMLAnch
   children: React.ReactNode;
 }
 
-const FormContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: number; aspectRatio?: number }> = ({
-  width = 315,
-  aspectRatio = 1.33,
+const sizeClasses: Record<FormSize, string> = {
+  sm: 'max-w-xs w-full',   // 320px
+  md: 'max-w-sm w-full',   // 384px
+  lg: 'max-w-md w-full',   // 448px
+  full: 'w-full',
+};
+
+/**
+ * Form container with responsive sizing and visual styling.
+ * 
+ * @example
+ * ```tsx
+ * <Form title="Login" size="md" onSubmit={handleSubmit}>
+ *   <FormField label="Email" type="email" required />
+ *   <FormField label="Password" type="password" required />
+ *   <FormButton>Sign In</FormButton>
+ * </Form>
+ * ```
+ */
+const FormContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { size?: FormSize }> = ({
+  size = 'md',
   className,
   children,
   ...props
@@ -36,12 +71,9 @@ const FormContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: n
         'bg-surface-tertiary rounded-[24px]',
         'shadow-[0_4px_8px_rgba(0,0,0,0.2),0_8px_16px_rgba(0,0,0,0.2),0_0_8px_rgba(255,255,255,0.1),0_0_16px_rgba(255,255,255,0.08)]',
         'z-[8]',
+        sizeClasses[size],
         className
       )}
-      style={{
-        width: `${width}px`,
-        minHeight: `${width * aspectRatio}px`,
-      }}
       {...props}
     >
       {children}
@@ -49,9 +81,7 @@ const FormContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: n
   );
 };
 
-const FormBox: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: number; aspectRatio?: number }> = ({
-  width = 315,
-  aspectRatio = 1.33,
+const FormBox: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props
@@ -65,9 +95,6 @@ const FormBox: React.FC<React.HTMLAttributes<HTMLDivElement> & { width?: number;
         'w-full',
         className
       )}
-      style={{
-        minHeight: `${width * aspectRatio}px`,
-      }}
       {...props}
     >
       {children}
@@ -93,19 +120,30 @@ const FormLogo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className, .
   );
 };
 
+/**
+ * A styled form component with responsive sizing.
+ * 
+ * @example
+ * ```tsx
+ * <Form title="Contact Us" size="md">
+ *   <FormField label="Name" required />
+ *   <FormField label="Email" type="email" required />
+ *   <FormButton>Submit</FormButton>
+ * </Form>
+ * ```
+ */
 export const Form: React.FC<FormProps> = ({
   title,
   showLogo = false,
   footer,
-  width = 315,
-  aspectRatio = 1.33,
+  size = 'md',
   className,
   children,
   ...props
 }) => {
   return (
-    <FormContainer width={width} aspectRatio={aspectRatio}>
-      <FormBox width={width} aspectRatio={aspectRatio}>
+    <FormContainer size={size}>
+      <FormBox>
         <form
           className={cn('flex justify-center items-center flex-col gap-[10px]', className)}
           {...props}
@@ -132,36 +170,71 @@ export const Form: React.FC<FormProps> = ({
   );
 };
 
+/**
+ * Form field component with label and error support.
+ * 
+ * @example
+ * ```tsx
+ * <FormField 
+ *   label="Email" 
+ *   type="email" 
+ *   error="Please enter a valid email"
+ *   required 
+ * />
+ * ```
+ */
 export const FormField: React.FC<FormFieldProps> = ({
   label,
   error,
+  helperText,
   className,
   size,
+  id,
   ...props
 }) => {
+  const fieldId = id || React.useId();
+  const errorMessage = typeof error === 'string' ? error : undefined;
+  const hasError = Boolean(error);
+
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-text-primary text-sm mb-1.5">
+        <label htmlFor={fieldId} className="block text-text-primary text-sm mb-1.5">
           {label}
         </label>
       )}
       <div className="flex justify-center">
         <Input
+          id={fieldId}
           className={cn(
             'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
             'focus:border focus:border-border-focus',
             className
           )}
-          error={error}
+          error={hasError}
           size={size}
+          aria-invalid={hasError}
+          aria-describedby={errorMessage ? `${fieldId}-error` : helperText ? `${fieldId}-helper` : undefined}
           {...props}
         />
       </div>
+      {errorMessage && (
+        <p id={`${fieldId}-error`} className="text-red-500 text-xs mt-1" role="alert">
+          {errorMessage}
+        </p>
+      )}
+      {helperText && !errorMessage && (
+        <p id={`${fieldId}-helper`} className="text-text-secondary text-xs mt-1">
+          {helperText}
+        </p>
+      )}
     </div>
   );
 };
 
+/**
+ * Form button component with variant support.
+ */
 export const FormButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'google' }> = ({
   variant = 'primary',
   className,
@@ -201,6 +274,9 @@ export const FormButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> 
   );
 };
 
+/**
+ * Form footer component for additional content.
+ */
 export const FormFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
@@ -219,6 +295,9 @@ export const FormFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   );
 };
 
+/**
+ * Footer link component with hover animation.
+ */
 export const FormFooterLink: React.FC<FormFooterLinkProps> = ({
   className,
   children,
@@ -239,4 +318,3 @@ export const FormFooterLink: React.FC<FormFooterLinkProps> = ({
     </a>
   );
 };
-

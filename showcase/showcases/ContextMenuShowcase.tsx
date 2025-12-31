@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContextMenu } from '../../components/ContextMenu';
+import { ContextMenu } from '../../src/components/ContextMenu';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 const contextMenuGroups = [

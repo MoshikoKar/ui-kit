@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button } from '../components/Button';
-import { SubmitButton } from '../components/SubmitButton';
-import { Card, CardHeader, CardContent, CardFooter } from '../components/Card';
-import { Input } from '../components/Input';
-import { Checkbox } from '../components/Checkbox';
-import { Toggle } from '../components/Toggle';
-import { RadioGroup, RadioButton } from '../components/RadioButton';
-import { Loader } from '../components/Loader';
-import { Tooltip } from '../components/Tooltip';
-import { SearchBar } from '../components/SearchBar';
-import { SocialLinks } from '../components/SocialLinks';
-import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '../components/Form';
-import { ThemeSwitch } from '../components/ThemeSwitch';
-import { ContextMenu } from '../components/ContextMenu';
+import { Button } from '../src/components/Button';
+import { SubmitButton } from '../src/components/SubmitButton';
+import { Card, CardHeader, CardContent, CardFooter } from '../src/components/Card';
+import { Input } from '../src/components/Input';
+import { Checkbox } from '../src/components/Checkbox';
+import { Toggle } from '../src/components/Toggle';
+import { RadioGroup, RadioButton } from '../src/components/RadioButton';
+import { Loader } from '../src/components/Loader';
+import { Tooltip } from '../src/components/Tooltip';
+import { SearchBar } from '../src/components/SearchBar';
+import { SocialLinks } from '../src/components/SocialLinks';
+import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '../src/components/Form';
+import { ThemeSwitch } from '../src/components/ThemeSwitch';
+import { ContextMenu } from '../src/components/ContextMenu';
 import { ThemeToggle } from './layout/ThemeToggle';
 
 export const LandingPage: React.FC = () => {
@@ -378,4 +378,3 @@ export const LandingPage: React.FC = () => {
     </div>
   );
 };
-

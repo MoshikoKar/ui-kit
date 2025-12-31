@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardContent, CardFooter, CardHeader } from '../../components/Card';
-import { Button } from '../../components/Button';
+import { Card, CardContent, CardFooter, CardHeader } from '../../src/components/Card';
+import { Button } from '../../src/components/Button';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 export const CardsShowcase: React.FC = () => {

@@ -4,10 +4,17 @@ import { cn } from '../utils/cn';
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
+/**
+ * Props for the Button component.
+ */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Visual style variant. Defaults to 'primary'. */
   variant?: ButtonVariant;
+  /** Size of the button. Defaults to 'md'. */
   size?: ButtonSize;
+  /** Shows a loading spinner when true. */
   loading?: boolean;
+  /** Button content. */
   children: React.ReactNode;
 }
 
@@ -24,6 +31,20 @@ const sizeClasses: Record<ButtonSize, string> = {
   lg: 'px-8 py-5 pl-9 text-base h-12',
 };
 
+/**
+ * A versatile button component with multiple variants and loading state.
+ * 
+ * @example
+ * ```tsx
+ * <Button variant="primary" onClick={handleClick}>
+ *   Click me
+ * </Button>
+ * 
+ * <Button variant="danger" loading={isLoading}>
+ *   Delete
+ * </Button>
+ * ```
+ */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',
   size = 'md',
@@ -53,6 +74,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
       )}
       style={{ fontFamily: '"Manrope", sans-serif' }}
       disabled={disabled || loading}
+      aria-busy={loading}
       {...props}
     >
       {loading && (

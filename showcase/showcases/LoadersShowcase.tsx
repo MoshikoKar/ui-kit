@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Spinner } from '../../components/Loader';
+import { Loader, Spinner } from '../../src/components/Loader';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 export const LoadersShowcase: React.FC = () => {

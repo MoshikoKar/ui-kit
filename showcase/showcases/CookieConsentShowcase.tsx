@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { CookieConsent } from '../../components/CookieConsent';
+import { CookieConsent } from '../../src/components/CookieConsent';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
-import { Button } from '../../components/Button';
+import { Button } from '../../src/components/Button';
 
 export const CookieConsentShowcase: React.FC = () => {
   const [showConsent, setShowConsent] = useState(false);

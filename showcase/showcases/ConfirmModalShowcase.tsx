@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ConfirmModal } from '../../components/ConfirmModal';
+import { ConfirmModal } from '../../src/components/ConfirmModal';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
-import { Button } from '../../components/Button';
+import { Button } from '../../src/components/Button';
 
 export const ConfirmModalShowcase: React.FC = () => {
   const [neutralOpen, setNeutralOpen] = useState(false);

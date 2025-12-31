@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   THEME VARIABLES
+   ============================================ */
+
 /* Base theme variables - Dark mode (default) */
 :root {
   /* Primary colors */
@@ -166,7 +170,10 @@
   --searchbar-shadow-color: rgba(79, 156, 232, 0.7019607843);
 }
 
-/* Base styles */
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
 * {
   box-sizing: border-box;
 }
@@ -189,9 +196,16 @@ body {
   outline-offset: 2px;
 }
 
-/* SubmitButton styles moved to SubmitButton.module.css */
+/* ============================================
+   CHECKBOX STYLES
+   
+   SVG path length calculations:
+   - Total path length: 575.054px (from pathLength attribute)
+   - Unchecked state: stroke-dasharray 241 shows border only
+   - Checked state: stroke-dasharray 70.51 shows checkmark portion
+   - Offset -262.27px positions the checkmark correctly
+   ============================================ */
 
-/* Checkbox Styles */
 .checkbox-container {
   cursor: pointer;
 }
@@ -211,12 +225,15 @@ body {
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease, stroke 0.3s ease;
+  /* 241px visible = border portion of the combined box+checkmark path */
   stroke-dasharray: 241 9999999;
   stroke-dashoffset: 0;
 }
 
 .checkbox-container input:checked ~ svg .checkbox-path {
+  /* 70.51px = checkmark portion visible */
   stroke-dasharray: 70.5096664428711 9999999;
+  /* -262.27px offset positions to show checkmark */
   stroke-dashoffset: -262.2723388671875;
   stroke: var(--color-primary);
 }
@@ -238,7 +255,10 @@ body {
   stroke: var(--color-text-disabled);
 }
 
-/* Theme Switch Styles */
+/* ============================================
+   THEME SWITCH STYLES
+   ============================================ */
+
 .theme-switch {
   --toggle-size: 16px;
   /* the size is adjusted using font-size,
@@ -407,7 +427,7 @@ body {
   transition: var(--transition);
 }
 
-/* actions */
+/* Theme switch actions */
 
 .theme-switch__checkbox:checked + .theme-switch__container {
   background-color: var(--container-night-bg);
@@ -442,7 +462,10 @@ body {
   transform: translateY(-50%);
 }
 
-/* Toggle Styles */
+/* ============================================
+   TOGGLE STYLES
+   ============================================ */
+
 .toggle-wrapper {
   /* Toggle-specific colors - matching original hardcoded values */
   --toggle-wrapper-bg-start: #d5d5d5;
@@ -551,15 +574,10 @@ body {
   border: 1px solid var(--color-danger);
 }
 
-/* Reduced motion support for Toggle */
-@media (prefers-reduced-motion: reduce) {
-  .toggle-container,
-  .toggle-button {
-    transition: none !important;
-  }
-}
+/* ============================================
+   LOADER STYLES
+   ============================================ */
 
-/* Loader Styles */
 .loader {
   width: 6em;
   height: 6em;
@@ -649,22 +667,9 @@ body {
   }
 }
 
-/* Reduced motion support for Loader and Toggle */
-@media (prefers-reduced-motion: reduce) {
-  .loader-face {
-    animation: none !important;
-  }
-  
-  .cont-icon .sparkle {
-    animation: none !important;
-  }
-  
-  .toggle-cont .toggle-label,
-  .toggle-cont .toggle-label::before,
-  .toggle-cont .toggle-label .cont-icon {
-    transition: none !important;
-  }
-}
+/* ============================================
+   RADIO BUTTON STYLES
+   ============================================ */
 
 .radio-input {
   display: flex;
@@ -771,7 +776,10 @@ body {
   cursor: not-allowed !important;
 }
 
-/* Form component animations */
+/* ============================================
+   FORM COMPONENT ANIMATIONS
+   ============================================ */
+
 @keyframes form-border-spin {
   100% {
     transform: rotate(360deg);
@@ -782,12 +790,9 @@ body {
   animation: form-border-spin 4s ease-in-out infinite;
 }
 
-/* Reduced motion support for Form */
-@media (prefers-reduced-motion: reduce) {
-  .form-border-animation {
-    animation: none !important;
-  }
-}
+/* ============================================
+   CARD STYLES
+   ============================================ */
 
 /* Card Styles - Dark Mode (default) */
 .card {
@@ -825,4 +830,63 @@ body {
 
 .theme-light .card.horizontal {
   /* Content-based sizing - no fixed dimensions */
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   
+   Comprehensive reduced motion support for users
+   who prefer minimal animation (accessibility).
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Checkbox animation */
+  .checkbox-path {
+    transition: none !important;
+  }
+  
+  /* Toggle animation */
+  .toggle-container,
+  .toggle-button {
+    transition: none !important;
+  }
+  
+  /* Loader animation */
+  .loader-face {
+    animation: none !important;
+  }
+  
+  /* Theme Switch animations */
+  .theme-switch__container,
+  .theme-switch__circle-container,
+  .theme-switch__sun-moon-container,
+  .theme-switch__moon,
+  .theme-switch__clouds,
+  .theme-switch__stars-container {
+    transition: none !important;
+  }
+  
+  /* Form border animation */
+  .form-border-animation {
+    animation: none !important;
+  }
+  
+  /* Radio button transition */
+  .radio-input label::before {
+    transition: none !important;
+  }
+  
+  /* SubmitButton sparkle animation (handled in module.css) */
+  .cont-icon .sparkle {
+    animation: none !important;
+  }
+  
+  /* General button transitions */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition: none !important;
+  }
 }

@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { cn } from '../utils/cn';
 
+/**
+ * Props for the Toggle component.
+ */
 export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  /** Label text displayed next to the toggle. */
   label?: string;
+  /** Whether the toggle is in an error state. */
   error?: boolean;
 }
 
+/**
+ * A toggle switch component with keyboard accessibility.
+ * 
+ * @example
+ * ```tsx
+ * <Toggle 
+ *   label="Enable notifications" 
+ *   checked={enabled}
+ *   onChange={(e) => setEnabled(e.target.checked)}
+ * />
+ * ```
+ */
 export const Toggle: React.FC<ToggleProps> = ({
   label,
   error = false,
@@ -17,22 +34,20 @@ export const Toggle: React.FC<ToggleProps> = ({
   ...props
 }) => {
   const toggleId = id || React.useId();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if ((e.key === 'Enter' || e.key === ' ') && !disabled) {
       e.preventDefault();
-      const input = document.getElementById(toggleId) as HTMLInputElement;
-      if (input) {
-        input.checked = !input.checked;
-        const changeEvent = new Event('change', { bubbles: true });
-        input.dispatchEvent(changeEvent);
-      }
+      // Use click() to properly trigger the native change event
+      inputRef.current?.click();
     }
   };
 
   return (
     <div className={cn('toggle-wrapper', error && 'toggle-wrapper--error', disabled && 'cursor-not-allowed', error && !disabled && 'cursor-help', className)}>
       <input
+        ref={inputRef}
         id={toggleId}
         className="toggle-checkbox"
         type="checkbox"

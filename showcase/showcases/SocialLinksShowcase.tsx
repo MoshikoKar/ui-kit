@@ -1,5 +1,5 @@
 import React from 'react';
-import { SocialLinks } from '../../components/SocialLinks';
+import { SocialLinks } from '../../src/components/SocialLinks';
 import { ShowcaseSection } from '../layout/ShowcaseSection';
 
 const socialLinksData = [
