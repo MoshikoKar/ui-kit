@@ -723,6 +723,47 @@ import { Form, FormField, FormButton, FormFooter, FormFooterLink } from '@possib
 5. **Composable**: Components can be combined and extended
 6. **Dynamic sizing**: Components adapt to content while maintaining minimum constraints
 
+## CSS Architecture
+
+The UI Kit uses an organized CSS structure for maintainability:
+
+```
+src/styles/
+├── globals.css           # Main entry point (imports all CSS)
+├── base.css              # Base/reset styles
+├── theme/
+│   └── variables.css     # Theme color variables (dark/light)
+├── components/
+│   ├── checkbox.css      # Checkbox component styles
+│   ├── theme-switch.css  # ThemeSwitch component styles
+│   ├── toggle.css        # Toggle component styles
+│   ├── loader.css        # Loader component styles
+│   ├── radio.css         # RadioButton component styles
+│   └── card.css          # Card component styles
+└── utilities/
+    ├── animations.css    # Animation keyframes
+    └── reduced-motion.css # Accessibility: reduced motion support
+```
+
+### CSS Approach
+
+The library uses a hybrid CSS approach:
+
+- **CSS Modules** for components with complex, scoped styles: `SubmitButton`, `ContextMenu`, `SearchBar`, `SocialLinks`
+- **Global CSS** for components with theme-dependent styles that need class-based selectors: `Checkbox`, `Toggle`, `Loader`, `RadioButton`, `ThemeSwitch`, `Card`
+
+### Reduced Motion Support
+
+All animated components respect `prefers-reduced-motion: reduce`:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .loader-face { animation: none !important; }
+  .toggle-button { transition: none !important; }
+  /* ... other animations disabled */
+}
+```
+
 ## License
 
 MIT

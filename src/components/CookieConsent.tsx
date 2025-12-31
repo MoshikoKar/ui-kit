@@ -1,27 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '../utils/cn';
 
+/**
+ * Props for the CookieConsent component.
+ */
 export interface CookieConsentProps {
+  /** Title text displayed at the top of the consent banner */
   title: string;
+  /** Description text explaining the cookie usage */
   description: string;
+  /** URL to the privacy policy page */
   privacyLink: string;
+  /** Text for the privacy policy link */
   privacyLinkText: string;
+  /** Text for the accept button */
   acceptLabel: string;
+  /** Text for the options/customize button */
   optionsLabel: string;
+  /** Callback fired when user accepts cookies */
   onAccept: () => void;
+  /** Callback fired when user clicks options button */
   onOptions: () => void;
+  /** localStorage key for storing consent state */
   storageKey: string;
+  /** Value to store when consent is given */
   storageValue: string;
+  /** Optional icon to display above the title */
   icon?: React.ReactNode;
+  /** Additional className for the container */
   className?: string;
+  /** Target attribute for the privacy link */
   privacyLinkTarget?: string;
+  /** Rel attribute for the privacy link */
   privacyLinkRel?: string;
+  /** Additional className for the icon wrapper */
   iconClassName?: string;
+  /** Additional className for the content wrapper */
   contentClassName?: string;
+  /** Additional className for the accept button */
   acceptButtonClassName?: string;
+  /** Additional className for the options button */
   optionsButtonClassName?: string;
 }
 
+/**
+ * A cookie consent banner component that stores user preferences in localStorage.
+ * Automatically hides when consent has already been given.
+ * 
+ * @example
+ * ```tsx
+ * <CookieConsent
+ *   title="We use cookies"
+ *   description="This website uses cookies to improve your experience."
+ *   privacyLink="/privacy"
+ *   privacyLinkText="Learn more"
+ *   acceptLabel="Accept"
+ *   optionsLabel="Customize"
+ *   onAccept={() => console.log('Accepted')}
+ *   onOptions={() => setShowOptions(true)}
+ *   storageKey="cookie-consent"
+ *   storageValue="accepted"
+ * />
+ * ```
+ */
 export const CookieConsent: React.FC<CookieConsentProps> = ({
   title,
   description,

@@ -2,19 +2,33 @@ import React from 'react';
 import { cn } from '../utils/cn';
 import styles from './SocialLinks.module.css';
 
+/** Supported social media platforms */
 export type SocialPlatform = 'linkedin' | 'github' | 'instagram' | 'youtube' | 'facebook' | 'spotify' | 'telegram' | 'pinterest' | 'x';
 
+/**
+ * Configuration for a single social link.
+ */
 export interface SocialLink {
+  /** Social media platform identifier */
   platform: SocialPlatform;
+  /** URL to the social media profile */
   url: string;
+  /** Custom label for accessibility (defaults to platform name) */
   label?: string;
 }
 
+/** Layout orientation for social links */
 export type SocialLinksOrientation = 'vertical' | 'horizontal';
 
+/**
+ * Props for the SocialLinks component.
+ */
 export interface SocialLinksProps extends React.HTMLAttributes<HTMLUListElement> {
+  /** Array of social links to display */
   links: SocialLink[];
+  /** Additional className for the list container */
   className?: string;
+  /** Layout orientation. Defaults to 'vertical'. */
   orientation?: SocialLinksOrientation;
 }
 
@@ -103,6 +117,22 @@ const getSocialLabel = (platform: SocialPlatform): string => {
   return labels[platform];
 };
 
+/**
+ * A social media links component with animated hover effects and tooltips.
+ * Supports 9 popular platforms with built-in icons and brand colors.
+ * 
+ * @example
+ * ```tsx
+ * <SocialLinks
+ *   links={[
+ *     { platform: 'github', url: 'https://github.com/username' },
+ *     { platform: 'linkedin', url: 'https://linkedin.com/in/username' },
+ *     { platform: 'x', url: 'https://x.com/username', label: 'Follow me' },
+ *   ]}
+ *   orientation="horizontal"
+ * />
+ * ```
+ */
 export const SocialLinks = React.forwardRef<HTMLUListElement, SocialLinksProps>(({
   links,
   className,

@@ -2,20 +2,22 @@ import React from 'react';
 import { cn } from '../utils/cn';
 import styles from './SearchBar.module.css';
 
+/** Size variants for the SearchBar component */
 export type SearchBarSize = 'sm' | 'md' | 'lg';
 
 /**
  * Props for the SearchBar component.
+ * Extends standard input attributes (except type, className, and size).
  */
 export interface SearchBarProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'className' | 'size'> {
-  /** Size variant of the search bar. Defaults to 'md'. */
+  /** Size variant of the search bar. Affects padding and font size. Defaults to 'md'. */
   size?: SearchBarSize;
-  /** Additional className for the container. */
+  /** Additional className for the outer container wrapper. */
   className?: string;
-  /** Additional className for the input element. */
+  /** Additional className for the input element itself. */
   inputClassName?: string;
-  /** Additional className for the inner search container. */
+  /** Additional className for the inner search container (contains input + icon). */
   searchContainerClassName?: string;
 }
 

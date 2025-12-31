@@ -1,0 +1,168 @@
+/* ============================================
+   THEME VARIABLES
+   ============================================ */
+
+/* Base theme variables - Dark mode (default) */
+:root {
+  /* Primary colors */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-active: #1d4ed8;
+  --color-primary-disabled: #1e40af;
+
+  /* Secondary colors */
+  --color-secondary: #6b7280;
+  --color-secondary-hover: #4b5563;
+  --color-secondary-active: #374151;
+  --color-secondary-disabled: #1f2937;
+
+  /* Danger colors */
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-danger-active: #b91c1c;
+  --color-danger-disabled: #991b1b;
+
+  /* Ghost colors */
+  --color-ghost: transparent;
+  --color-ghost-hover: rgba(255, 255, 255, 0.1);
+  --color-ghost-active: rgba(255, 255, 255, 0.15);
+  --color-ghost-disabled: transparent;
+
+  /* Surface colors */
+  --color-surface: #1f2937;
+  --color-surface-secondary: #374151;
+  --color-surface-tertiary: #4b5563;
+
+  /* Text colors */
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-disabled: #6b7280;
+
+  /* Border colors */
+  --color-border: #374151;
+  --color-border-focus: #3b82f6;
+
+
+  /* SubmitButton-specific colors - matching original hardcoded values */
+  --submit-primary: #ff5569;
+  --submit-neutral-1: #f7f8f7;
+  --submit-neutral-2: #e7e7e7;
+
+  /* Loader-specific colors - matching original hardcoded values */
+  --loader-gold: gold;
+  --loader-black: #000;
+
+  /* RadioButton-specific colors - matching original hardcoded values */
+  --radio-bg: #f6f6f6;
+  --radio-border: #8e8f8f;
+  --radio-hover-border: #3c7fb1;
+  --radio-hover-bg-light: #def9fa;
+  --radio-hover-bg-medium: #79c6f9;
+  --radio-hover-bg-dark: #c6e9fc;
+  --radio-hover-shadow: #b1dffd;
+  --radio-checked-bg: #7cd3eb;
+  --radio-checked-border: #27506d;
+  --radio-checked-shadow-1: #16638f;
+  --radio-checked-shadow-2: #1985c0;
+
+  /* Input-specific colors */
+  --input-shadow: rgb(5, 5, 5);
+  --input-shadow-error: rgb(220, 38, 38);
+
+  /* SearchBar-specific colors - matching original hardcoded values */
+  --searchbar-container-gradient-start: rgb(179, 208, 253);
+  --searchbar-container-gradient-end: rgb(164, 202, 248);
+  --searchbar-container-bg-start: rgb(218, 232, 247);
+  --searchbar-container-bg-end: rgb(214, 229, 247);
+  --searchbar-container-before-start: rgb(218, 232, 247);
+  --searchbar-container-before-end: rgb(255, 255, 255);
+  --searchbar-container-after-start: rgb(163, 206, 255);
+  --searchbar-container-after-end: rgb(211, 232, 255);
+  --searchbar-input-color: #9EBCD9;
+  --searchbar-input-focus-start: rgb(239, 247, 255);
+  --searchbar-input-focus-end: rgb(214, 229, 247);
+  --searchbar-shadow-color: rgba(79, 156, 232, 0.7019607843);
+}
+
+/* Light mode theme variables */
+.theme-light {
+  /* Primary colors */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-active: #1d4ed8;
+  --color-primary-disabled: #93c5fd;
+
+  /* Secondary colors */
+  --color-secondary: #6b7280;
+  --color-secondary-hover: #4b5563;
+  --color-secondary-active: #374151;
+  --color-secondary-disabled: #d1d5db;
+
+  /* Danger colors */
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-danger-active: #b91c1c;
+  --color-danger-disabled: #fca5a5;
+
+  /* Ghost colors */
+  --color-ghost: transparent;
+  --color-ghost-hover: rgba(0, 0, 0, 0.05);
+  --color-ghost-active: rgba(0, 0, 0, 0.1);
+  --color-ghost-disabled: transparent;
+
+  /* Surface colors */
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f9fafb;
+  --color-surface-tertiary: #f3f4f6;
+
+  /* Text colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-disabled: #9ca3af;
+
+  /* Border colors */
+  --color-border: #d1d5db;
+  --color-border-focus: #3b82f6;
+
+
+  /* SubmitButton-specific colors - matching original hardcoded values */
+  --submit-primary: #ff5569;
+  --submit-neutral-1: #f7f8f7;
+  --submit-neutral-2: #e7e7e7;
+
+  /* Loader-specific colors - matching original hardcoded values */
+  --loader-gold: gold;
+  --loader-black: #000;
+
+  /* RadioButton-specific colors - matching original hardcoded values */
+  --radio-bg: #f6f6f6;
+  --radio-border: #8e8f8f;
+  --radio-hover-border: #3c7fb1;
+  --radio-hover-bg-light: #def9fa;
+  --radio-hover-bg-medium: #79c6f9;
+  --radio-hover-bg-dark: #c6e9fc;
+  --radio-hover-shadow: #b1dffd;
+  --radio-checked-bg: #7cd3eb;
+  --radio-checked-border: #27506d;
+  --radio-checked-shadow-1: #16638f;
+  --radio-checked-shadow-2: #1985c0;
+
+  /* Input-specific colors */
+  --input-shadow: rgba(0, 0, 0, 0.3);
+  --input-shadow-error: rgba(220, 38, 38, 0.336);
+
+  /* SearchBar-specific colors - matching original hardcoded values */
+  --searchbar-container-gradient-start: rgb(179, 208, 253);
+  --searchbar-container-gradient-end: rgb(164, 202, 248);
+  --searchbar-container-bg-start: rgb(218, 232, 247);
+  --searchbar-container-bg-end: rgb(214, 229, 247);
+  --searchbar-container-before-start: rgb(218, 232, 247);
+  --searchbar-container-before-end: rgb(255, 255, 255);
+  --searchbar-container-after-start: rgb(163, 206, 255);
+  --searchbar-container-after-end: rgb(211, 232, 255);
+  --searchbar-input-color: #9EBCD9;
+  --searchbar-input-focus-start: rgb(239, 247, 255);
+  --searchbar-input-focus-end: rgb(214, 229, 247);
+  --searchbar-shadow-color: rgba(79, 156, 232, 0.7019607843);
+}
+

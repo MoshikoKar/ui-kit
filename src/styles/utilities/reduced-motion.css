@@ -1,0 +1,59 @@
+/* ============================================
+   REDUCED MOTION SUPPORT
+   
+   Comprehensive reduced motion support for users
+   who prefer minimal animation (accessibility).
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Checkbox animation */
+  .checkbox-path {
+    transition: none !important;
+  }
+  
+  /* Toggle animation */
+  .toggle-container,
+  .toggle-button {
+    transition: none !important;
+  }
+  
+  /* Loader animation */
+  .loader-face {
+    animation: none !important;
+  }
+  
+  /* Theme Switch animations */
+  .theme-switch__container,
+  .theme-switch__circle-container,
+  .theme-switch__sun-moon-container,
+  .theme-switch__moon,
+  .theme-switch__clouds,
+  .theme-switch__stars-container {
+    transition: none !important;
+  }
+  
+  /* Form border animation */
+  .form-border-animation {
+    animation: none !important;
+  }
+  
+  /* Radio button transition */
+  .radio-input label::before {
+    transition: none !important;
+  }
+  
+  /* SubmitButton sparkle animation (handled in module.css) */
+  .cont-icon .sparkle {
+    animation: none !important;
+  }
+  
+  /* General button transitions */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition: none !important;
+  }
+}
+

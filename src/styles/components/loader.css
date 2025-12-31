@@ -1,0 +1,93 @@
+/* ============================================
+   LOADER STYLES
+   ============================================ */
+
+.loader {
+  width: 6em;
+  height: 6em;
+  font-size: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-face {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  animation: animate023845 3s linear infinite;
+  will-change: transform;
+}
+
+.loader-face-1 {
+  width: 100%;
+  height: 100%;
+  color: var(--loader-gold);
+  border-color: currentColor transparent transparent currentColor;
+  border-width: 0.2em 0.2em 0em 0em;
+  --deg: -45deg;
+  animation-direction: normal;
+}
+
+.loader-face-2 {
+  width: 70%;
+  height: 70%;
+  color: var(--loader-black);
+  border-color: currentColor currentColor transparent transparent;
+  border-width: 0.2em 0em 0em 0.2em;
+  --deg: -135deg;
+  animation-direction: reverse;
+}
+
+.loader-circle {
+  position: absolute;
+  width: 50%;
+  height: 0.1em;
+  top: 50%;
+  left: 50%;
+  background: transparent;
+  transform: rotate(var(--deg));
+  transform-origin: left;
+}
+
+.loader-face-1 .loader-circle::before {
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  content: '';
+  width: 1em;
+  height: 1em;
+  background-color: var(--loader-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 2em var(--loader-gold),
+              0 0 4em var(--loader-gold),
+              0 0 6em var(--loader-gold),
+              0 0 8em var(--loader-gold),
+              0 0 10em var(--loader-gold),
+              0 0 0 0.5em rgba(255, 215, 0, 0.1);
+}
+
+.loader-face-2 .loader-circle::before {
+  position: absolute;
+  top: -0.5em;
+  right: -0.5em;
+  content: '';
+  width: 1em;
+  height: 1em;
+  background-color: var(--loader-black);
+  border-radius: 50%;
+  box-shadow: 0 0 2em rgba(255, 255, 255, 0.8),
+              0 0 4em rgba(255, 255, 255, 0.6),
+              0 0 6em rgba(255, 255, 255, 0.4),
+              0 0 8em rgba(255, 255, 255, 0.3),
+              0 0 10em rgba(255, 255, 255, 0.2),
+              0 0 0 0.5em rgba(255, 255, 255, 0.1);
+}
+
+@keyframes animate023845 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+

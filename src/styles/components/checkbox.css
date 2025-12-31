@@ -1,0 +1,59 @@
+/* ============================================
+   CHECKBOX STYLES
+   
+   SVG path length calculations:
+   - Total path length: 575.054px (from pathLength attribute)
+   - Unchecked state: stroke-dasharray 241 shows border only
+   - Checked state: stroke-dasharray 70.51 shows checkmark portion
+   - Offset -262.27px positions the checkmark correctly
+   ============================================ */
+
+.checkbox-container {
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  display: none;
+}
+
+.checkbox-container svg {
+  overflow: visible;
+}
+
+.checkbox-path {
+  fill: none;
+  stroke: var(--color-text-primary);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease, stroke 0.3s ease;
+  /* 241px visible = border portion of the combined box+checkmark path */
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.checkbox-container input:checked ~ svg .checkbox-path {
+  /* 70.51px = checkmark portion visible */
+  stroke-dasharray: 70.5096664428711 9999999;
+  /* -262.27px offset positions to show checkmark */
+  stroke-dashoffset: -262.2723388671875;
+  stroke: var(--color-primary);
+}
+
+.checkbox-path-error {
+  stroke: var(--color-danger);
+}
+
+.checkbox-container input:checked ~ svg .checkbox-path-error {
+  stroke: var(--color-danger);
+}
+
+.checkbox-container:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkbox-container:has(input:disabled) .checkbox-path {
+  stroke: var(--color-text-disabled);
+}
+
