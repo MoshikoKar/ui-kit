@@ -64,9 +64,6 @@ export const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(({
       className={cn(
         styles.container, 
         sizeClass.container,
-        // Responsive width using CSS instead of JavaScript calculation
-        'min-w-[200px] md:min-w-[260px] lg:min-w-[320px]',
-        'w-full max-w-md',
         className
       )}
     >

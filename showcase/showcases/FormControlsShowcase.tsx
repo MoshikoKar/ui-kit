@@ -34,7 +34,7 @@ export const FormControlsShowcase: React.FC = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     className={cn(
-                      'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+                      'border-none rounded-xl bg-surface',
                       'focus:border focus:border-border-focus'
                     )}
                   />
@@ -52,7 +52,7 @@ export const FormControlsShowcase: React.FC = () => {
                   value=""
                   onChange={() => {}}
                   className={cn(
-                    'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+                    'border-none rounded-xl bg-surface',
                     'focus:border focus:border-border-focus'
                   )}
                 />
@@ -69,7 +69,7 @@ export const FormControlsShowcase: React.FC = () => {
                   value="Can't edit this"
                   onChange={() => {}}
                   className={cn(
-                    'p-3 border-none rounded-xl bg-surface text-text-primary text-sm outline-none',
+                    'border-none rounded-xl bg-surface',
                     'focus:border focus:border-border-focus'
                   )}
                 />
